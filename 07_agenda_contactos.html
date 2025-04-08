@@ -23,10 +23,20 @@
     let contactos=[];
 
     function guardar(){
-        //impedir que los nombres se repitan
 
-    let i = document.getElementById("nombre").value;
-        //alert(i);
+            // Vamos a impedir que los nombres se repitan
+
+        let i = document.getElementById("nombre").value;
+       // while (i==null || i==""){
+       //     alert("Nombre no válido");
+       //     document.getElementById("nombre").value
+
+       // }
+
+            // Para hacerlo chachi tenemos que poner una variable externa que nos diga si está repetido o no
+            // Vamos a hacer una funcion igual que vamos a poner como falsa
+            // Recorremos el array comparándolo con "i" y si son iguales le doy a "igual" el valor TRUE
+
         let igual=false
         for (n of contactos){
             if (i==n){
@@ -34,47 +44,55 @@
             }
         };
 
+
+            // El push solo lo vamos a hacer si la variable "igual" es falsa. Si es verdadera es que el nombre ya está
+            // y si el nombre ya está no lo ponemos hacemos push en la lista.
+
         if (igual==false){
             contactos.push(i);
-        }else alert("el nombre está metido");
+        }else {
+            alert("el nombre está metido");
+        };
 
-
+            //lo ponemos fuera de todo para que se limpie la cajita
+        document.getElementById("nombre").value="";
+        console.log(contactos)
         }
 
-console.log(contactos)
+
 
     
 
     function mostrar(){
-// Ponemos una variable html donde estructuramos el texto que queremos que nos saque.
-// Si no ponemos esta variable y la dejamos solamente con lo del document.getelement
-// lo que pasaría es que estaría todo el tiempo aña
+            // Ponemos una variable html donde estructuramos el texto que queremos que nos saque.
+            // Si no ponemos esta variable y la dejamos solamente con lo del document.getelement
+            // lo que pasaría es que estaría todo el tiempo aña
 
 
         let html="";
         for (n of contactos){
 
-            html=html + n + "<br>"
+            html=html + n + " " + "--------" + `<img src="papelera.png" height="20px" width="20px">` + "<br>"
             html=document.getElementById("listaNombres").innerHTML=html;
 
         }
     }
 
-        // ESTO ES SOLO CON EL DOCUMENT.GETELEMENT sin variable
- /*     
+                // ESTO ES SOLO CON EL DOCUMENT.GETELEMENT sin variable
+        /*     
 
-        Con lo de añadir creamos el array.
-        Con esta función estamos recorriendo el array y diciendo que nos lo muestre en el div
-        pero si volvemos a darle lo imprime otra vez       
+                Con lo de añadir creamos el array.
+                Con esta función estamos recorriendo el array y diciendo que nos lo muestre en el div
+                pero si volvemos a darle lo imprime otra vez       
 
-        for (n of contactos){
+                for (n of contactos){
 
-            document.getElementById("listaNombres").innerHTML=+n;
+                    document.getElementById("listaNombres").innerHTML=+n;
 
-        }
-    }
+                }
+            }
 
-    */ 
+            */ 
 
     function borrarLista(){
         document.getElementById("listaNombres").innerHTML=""
