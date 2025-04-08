@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas Alumnos</title>
+
+    <style>
+/* General styles */
+body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #d4af37; /* Gold color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        /* Input and button styles */
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            background-color: #333;
+            color: #d4af37;
+            margin-right: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ffd700; /* Brighter gold on focus */
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #d4af37;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffd700; /* Brighter gold on hover */
+        }
+
+        button.personal {
+            margin: 5px;
+        }
+
+        /* Div container for results */
+        #cuerpo {
+            margin-top: 20px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            background-color: #333;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            text-align: center;
+        }
+    
+    </style>
+
+
+</head>
+<body>
+    <h2>Introduce una nota y dale OK</h2>
+    <input id="nota" class="personal" type="number"><button onclick="añadirNota()">OK</button><br><br>
+
+<button class="personal" onclick="totalAprobados()"> APROBADOS </button>
+<button onclick="notaMedia()"> NOTA MEDIA</button>
+<button onclick="notaAltaBaja(1)"> NOTA ALTA</button>
+<button onclick="notaAltaBaja(2)"> NOTA BAJA</button>
+<br><br>
+<button onclick="borrarNotas()"> BORRAR NOTAS</button>
+
+
+<div input id="cuerpo">
+
+
+</div>
+
+
+    <script>
+
+        //arrayc con las notas
+        let notas=[7,5,2,4,9,6,2,3,4,8,8,6];
+
+function totalAprobados(){
+        //haremos una función que calcule el total de aprobados en una clases
+
+    let totalAprobados=0
+
+    for (n of notas){
+
+        if (n>=5){
+            
+            totalAprobados++
+            console.log(n)
+
+        }
+
+    }
+    return alert(`El total de aprobados es ${totalAprobados}`)
+
+}
+
+function notaMedia(){
+sumaTotal=0;
+let media;
+    for (i of notas){
+
+sumaTotal=sumaTotal+i;
+console.log(sumaTotal);
+
+    };
+
+    media=sumaTotal/notas.length;
+
+return alert(`La nota media es ${media}`);
+
+}
+
+function notaAltaBaja(a){
+    if (notas.length>0){ 
+    let masAlta=notas[0];
+    let masBaja=notas[0];
+        for (i of notas){
+
+            if(i>masAlta){
+
+                masAlta=i
+            }
+            if(i<masBaja){
+
+                masBaja=i
+            }
+        }
+
+        if (a==1){
+
+            alert(`La nota más alta es ${masAlta}`);
+
+            }else if (a==2){
+
+
+
+            alert(`La nota más baja es ${masBaja}`);
+
+            };
+    }else{
+        document.getElementById("cuerpo").innerHTML="No hay notas";
+        }
+
+
+    };
+
+function añadirNota(){
+
+//Se pide una nota que debe estar comprendida entre 0 y 10
+
+    nuevaNota=document.getElementById("nota").value;
+
+    if (nuevaNota<0 || nuevaNota>10) //Si no está entre 0 y 10 nos dice que no vale la nota
+        alert("Tiene que ser una nota entre 0 y 10");
+    else{
+        notas.push(parseInt(nuevaNota));
+        document.getElementById("cuerpo").innerHTML="NOTA AÑADIDA";
+    }
+        console.log(notas);
+
+        //usar el div cuerpo para mostrar el resultado.
+
+};
+
+function borrarNotas(){
+    notas=[];
+
+}
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minicalculadora</title>
+</head>
+<body>
+
+    <button onclick="sumar();"> SUMAR </button><button onclick="multiplicar();">MULTIPLICAR</button><br>
+    <button onclick="factorial()">FACTORIAL</button>
+    
+
+    <script>
+function sumar(){
+    //solicito la introducción de números
+
+    let a = parseInt(prompt("Introduce el primer número"));
+    let b = parseInt(prompt("Introduce el segundo número"));
+
+    let resultado=a+b
+
+
+    return alert(`La suma es ${resultado}`)
+    
+
+}
+
+function multiplicar(){
+
+    //solicito la introducción de números
+    let a = parseInt(prompt("Introduce el primer número"));
+    let b = parseInt(prompt("Introduce el segundo número"));
+
+
+    let resultado=a*b
+
+    return alert(`La multiplicación es ${resultado}`)
+
+}
+
+function factorial(){
+
+    let a = parseInt(prompt("Introduce un número"))
+    let fact=a;
+
+    for (i=a;i>=2;i--){
+
+        fact= fact*i;
+
+    }
+
+alert(fact)
+
+}
+
+    </script>
+</body>
+</html>

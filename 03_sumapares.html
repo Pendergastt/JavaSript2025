@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sumapares</title>
+</head>
+<body>
+    <button onclick="sumaPares()">SUMA PARES</button>
+
+    <script>
+        function sumaPares(){
+            let a = prompt("Introduce el primer número");
+            let b = prompt("Introduce el segundo número");
+            let sumaTotal = 0
+            let mayor, menor;
+            if (a<b){
+                    menor=parseInt(a);
+                    mayor=parseInt(b);
+                };
+
+                if (a>b){
+                    menor=b
+                    mayor=a
+                }
+
+
+            for (i=menor;i<=mayor;i++){
+
+
+                if (i%2==0){
+                    sumaTotal=sumaTotal+i;
+                    console.log(sumaTotal)
+                }
+
+            }
+
+            alert(`La suma total es ${sumaTotal}`);
+
+
+
+        }
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas Alumnos</title>
+</head>
+<body>
+
+<button onclick="nuevaNota()">NUEVA NOTA</button>
+<br><br>
+<!-- Esto lo hacemos con los botones-->
+<button onclick="totalAprobados()"> APROBADOS </button>
+<button onclick="notaMedia()"> NOTA MEDIA</button>
+<button onclick="notaAltaBaja(1)"> NOTA ALTA</button>
+<button onclick="notaAltaBaja(2)"> NOTA BAJA</button>
+<button onclick="saludo()"> SALUDO</button>
+
+
+    <script>
+
+        //arrayc con las notas
+        let notas=[7,5,2,4,9,6,2,3,4,8,8,6];
+
+        //haremos una función que calcule el total de aprobados en una clases
+function totalAprobados(){
+
+    let totalAprobados=0
+
+    /*
+       for (i=0;i<notas.length;i++){
+        if (notas[i]>=5){
+            
+            totalAprobados++
+            console.log(notas[i])
+
+        }
+
+        }
+
+        return alert(`El total de aprobados es ${totalAprobados}`)
+    */
+
+    for (n of notas){
+
+        if (n>=5){
+            
+            totalAprobados++
+            console.log(n)
+
+        }
+
+    }
+    return alert(`El total de aprobados es ${totalAprobados}`)
+
+}
+
+function notaMedia(){
+sumaTotal=0;
+let media;
+    for (i of notas){
+
+sumaTotal=sumaTotal+i;
+console.log(sumaTotal);
+
+    };
+
+    media=sumaTotal/notas.length;
+
+return alert(`La nota media es ${media}`);
+
+}
+
+function notaAltaBaja(a){
+let masAlta=notas[0];
+let masBaja=notas[0];
+    for (i of notas){
+
+        if(i>masAlta){
+
+            masAlta=i
+        }
+        if(i<masBaja){
+
+            masBaja=i
+        }
+    }
+
+    if (a==1){
+
+        alert(`La nota más alta es ${masAlta}`);
+
+        }else if (a==2){
+
+        alert(`La nota más baja es ${masBaja}`);
+        console.log(masBaja)
+
+        };
+
+
+    };
+
+function nuevaNota(){
+
+//Se pide una nota que debe estar comprendida entre 0 y 10
+    nota=parseInt(prompt("Añade una nueva nota"));
+    while (nota<0 || nota>10)
+        nota=parseInt(prompt("Tiene que ser una nota entre 0 y 10"));
+    notas.push(nota);    
+    console.log(notas);
+
+};
+
+
+    </script>
+    
+</body>
+</html>

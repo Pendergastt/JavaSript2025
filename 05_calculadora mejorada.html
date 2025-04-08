@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora mejorada</title>
+</head>
+<body>
+    <!-- Input hace que se añadan cosas en varias cajitas?
+    poniendo ID lo que vamos a darle es una "etiqueta" para que luego
+    podamos recuperar lo que hay dentro de la caja de texto. 
+    -->
+    <h2>Introduce un número:</h2><br><input id="num1" type="number"><br>
+    <h2>Introduce otro:</h2><br><input id="num2" type="number"><br><br>
+    <button onclick="sumarNumeros();">SUMAR</button><button onclick="multiplicarNumeros();">MULTIPLICAR</button>
+    <br><br>
+    <div input id="result">
+
+
+
+    </div>
+
+
+
+
+
+
+
+<script>
+    /* vamos a usar el getelement by id que lo que hace es que
+
+
+    */
+function sumarNumeros(){
+    let n1= document.getElementById("num1");
+    let n2= document.getElementById("num2");
+
+    //a través de la propiedad values de los objetos de los imput
+    //accedemos al contenido de la etiqueta, que es lo que hemos metido en el campo que sea.
+    //en este caso el numero
+    let suma=parseInt(n1.value) + parseInt(n2.value)
+    document.getElementById("result").innerHTML=`<h3>La suma es ${suma}<h3>`
+    alert(`El valor de la suma es ${suma}`);
+
+
+
+}
+
+function multiplicarNumeros(){
+
+
+}
+
+
+
+</script>
+</body>
+</html>
