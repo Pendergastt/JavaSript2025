@@ -10,23 +10,40 @@
     Introduce nombre:<input type="text" id="nombre"><button onclick="guardar();">GUARDAR</button>
     <br><br>
     <button onclick="mostrar();">MOSTRAR</button>
+    <br><br>
     <div id="listaNombres">
+        <br>
 
     </div>
-    <button onclick="borrarLista();">BORRAR LISTA</button>
+    <br>
+        <button onclick="borrarLista();">BORRAR LISTA</button>
 
     <script>
 
     let contactos=[];
 
     function guardar(){
+        //impedir que los nombres se repitan
+
     let i = document.getElementById("nombre").value;
-        contactos.push(i);
-        alert("Nombre guardaro");
+        //alert(i);
+        let igual=false
+        for (n of contactos){
+            if (i==n){
+                igual=true
+            }
+        };
+
+        if (igual==false){
+            contactos.push(i);
+        }else alert("el nombre está metido");
+
+
+        }
 
 console.log(contactos)
 
-    }
+    
 
     function mostrar(){
 // Ponemos una variable html donde estructuramos el texto que queremos que nos saque.
@@ -36,10 +53,12 @@ console.log(contactos)
 
         let html="";
         for (n of contactos){
+
             html=html + n + "<br>"
             html=document.getElementById("listaNombres").innerHTML=html;
-            alert(html);
+
         }
+    }
 
         // ESTO ES SOLO CON EL DOCUMENT.GETELEMENT sin variable
  /*     
@@ -58,9 +77,10 @@ console.log(contactos)
     */ 
 
     function borrarLista(){
-        document.
+        document.getElementById("listaNombres").innerHTML=""
 
     }
+
 
     </script>
     
