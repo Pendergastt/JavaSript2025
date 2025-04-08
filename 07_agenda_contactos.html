@@ -27,20 +27,26 @@
             // Vamos a impedir que los nombres se repitan
 
         let i = document.getElementById("nombre").value;
-       // while (i==null || i==""){
-       //     alert("Nombre no válido");
-       //     document.getElementById("nombre").value
+        
+     /*   do{
+            alert("Nombre no válido");
+            document.getElementById("nombre").value
 
-       // }
-
+        }while (i=="")
+     */
             // Para hacerlo chachi tenemos que poner una variable externa que nos diga si está repetido o no
             // Vamos a hacer una funcion igual que vamos a poner como falsa
             // Recorremos el array comparándolo con "i" y si son iguales le doy a "igual" el valor TRUE
 
         let igual=false
-        for (n of contactos){
+        for (n of contactos){  //poner otro if y otra variable para los ""
             if (i==n){
-                igual=true
+                alert("El nombre ya existe");
+                igual=true;
+            }
+            if (i==""){
+                alert("El campo está vacío");
+                igual=true;
             }
         };
 
@@ -50,9 +56,9 @@
 
         if (igual==false){
             contactos.push(i);
-        }else {
-            alert("el nombre está metido");
-        };
+        }//else {
+           // alert("el nombre está metido o el campo está vacío");
+        //};
 
             //lo ponemos fuera de todo para que se limpie la cajita
         document.getElementById("nombre").value="";
@@ -95,7 +101,7 @@
             */ 
 
     function borrarLista(){
-        document.getElementById("listaNombres").innerHTML=""
+        document.getElementById("listaNombres").innerHTML=" "
 
     }
 
