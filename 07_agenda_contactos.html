@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Contactos</title>
+</head>
+<body>
+
+    Introduce nombre:<input type="text" id="nombre"><button onclick="guardar();">GUARDAR</button>
+    <br><br>
+    <button onclick="mostrar();">MOSTRAR</button>
+    <div id="listaNombres">
+
+    </div>
+    <button onclick="borrarLista();">BORRAR LISTA</button>
+
+    <script>
+
+    let contactos=[];
+
+    function guardar(){
+    let i = document.getElementById("nombre").value;
+        contactos.push(i);
+        alert("Nombre guardaro");
+
+console.log(contactos)
+
+    }
+
+    function mostrar(){
+// Ponemos una variable html donde estructuramos el texto que queremos que nos saque.
+// Si no ponemos esta variable y la dejamos solamente con lo del document.getelement
+// lo que pasaría es que estaría todo el tiempo aña
+
+
+        let html="";
+        for (n of contactos){
+            html=html + n + "<br>"
+            html=document.getElementById("listaNombres").innerHTML=html;
+            alert(html);
+        }
+
+        // ESTO ES SOLO CON EL DOCUMENT.GETELEMENT sin variable
+ /*     
+
+        Con lo de añadir creamos el array.
+        Con esta función estamos recorriendo el array y diciendo que nos lo muestre en el div
+        pero si volvemos a darle lo imprime otra vez       
+
+        for (n of contactos){
+
+            document.getElementById("listaNombres").innerHTML=+n;
+
+        }
+    }
+
+    */ 
+
+    function borrarLista(){
+        document.
+
+    }
+
+    </script>
+    
+</body>
+</html>
