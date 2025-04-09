@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador</title>
+</head>
+<body>
+    <!-- 
+    
+    .- Cajita donde meter una temática (deportes, noticias juegos...)
+    .- botón en el que ponga "buscar"
+    .- al pulsar aparece debajo una lista de direcciones asociados con la temática que hemos metido.
+    
+    -->
+    TEMÁTICA: <input type="text" id="tematica">
+    <br><br>
+    <button id="buscar" onclick="buscar();">BUSCAR</button>
+
+    <div id="resultados"><!-- Aquí le ponemos los resultados -->
+
+    </div>
+
+    <script>
+
+//hemos definidoo una función pero tenemos que inventarnos los datos de las temáticas
+//Así que nos vamos a inventar los datos que vamos a poner
+
+//Haremos un array.
+
+let datos=[
+        "deportes|http://www.marca.es",
+        "libros|http://www.puntolibro.es",
+        "deportes|http://www.todofutbol.com",
+        "libros|http://www.fnac.es",
+        "cocina|http://www.fogones.es",
+        "juegos|http://www.game.es"
+        ];
+
+
+    function buscar(){
+
+        let direcciones=[];
+        let comparar = document.getElementById("tematica").value;
+        direcciones.push(comparar);
+
+
+
+        for(i of datos){
+/*           
+
+Vale, lo que queremos hacer recorrer el array que tiene la categoria y la dirección para separar las ya que dentro hay texto
+para ello hacemos un array que después nos lo separe en base al "|",
+
+*/
+
+            console.log(i);
+            let item = i.split("|");
+            console.log(item);
+            if (item[0]==comparar){
+                direcciones.push(item[1]);
+            }
+
+        }
+        console.log(direcciones)
+        
+
+
+    }
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>
