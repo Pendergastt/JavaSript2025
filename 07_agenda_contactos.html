@@ -28,27 +28,19 @@
 
         let i = document.getElementById("nombre").value;
         
-     /*   do{
-            alert("Nombre no válido");
-            document.getElementById("nombre").value
+        if (document.getElementById("nombre").value==""){
 
-        }while (i=="")
-     */
-            // Para hacerlo chachi tenemos que poner una variable externa que nos diga si está repetido o no
-            // Vamos a hacer una funcion igual que vamos a poner como falsa
-            // Recorremos el array comparándolo con "i" y si son iguales le doy a "igual" el valor TRUE
+            alert("El campo no puede estar vacío")
+        }else {
 
         let igual=false
         for (n of contactos){  //poner otro if y otra variable para los ""
             if (i==n){
                 alert("El nombre ya existe");
                 igual=true;
-            }
-            if (i==""){
-                alert("El campo está vacío");
-                igual=true;
-            }
-        };
+                }
+            };
+        
 
 
             // El push solo lo vamos a hacer si la variable "igual" es falsa. Si es verdadera es que el nombre ya está
@@ -65,7 +57,7 @@
         console.log(contactos)
         }
 
-
+    };
 
     
 
@@ -78,7 +70,7 @@
         let html="";
         for (n of contactos){
 
-            html=html + n + " " + "--------" + `<img src="papelera.png" height="20px" width="20px">` + "<br>"
+            html=`<img src="papelera.png" height="20px" width="20px">` + "<br>"+ html + n
             html=document.getElementById("listaNombres").innerHTML=html;
 
         }
