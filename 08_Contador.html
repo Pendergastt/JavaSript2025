@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTADOR</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #contador {
+            font-size: 30px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border: 1px solid black;
+            box-shadow: 3px solid red;
+            width: 100px;
+            height: 50px;
+            align-content: center;
+            text-align: center;
+
+        }
+        #botonContador {
+            align-self: center;
+        }
+    </style>
+
+</head>
+<body>
+<!--
+    
+    Página con botón que pone contar en elmedio.
+    Encima del botón un número y cada vez que le das al botón, incrementa el contador
+ 
+    Vamos a poner una cajita para que el usuario pueda poner un límite al número de clicks
+    Cuando llega al límite, comienza a ir para atrás.
+
+ -->
+
+ <div id="zonaInput">
+
+    PON UN NÚMERO LÍMITE <br>
+    <input type="text" id="cajaLimite" style="display: flex; text-align: center; justify-content: center; justify-self: center;">
+
+ </div>
+ <div id="contador" style="border-color: black; border-radius: 5px;">
+
+
+ </div>
+
+ <button id="botonContador" onclick="sumar();">CONTADOR</button>
+
+
+ <script>
+
+    let n=0;
+    let ascendente=true; //ponemos esta variable para decirle si estamos subiendo o bajando
+    
+    function sumar(){
+
+        let limiteSup = document.getElementById("cajaLimite").value;
+        let limiteInf = 0;
+        if(n==limiteSup) ascendente=false;
+        if(n==limiteInf) ascendente=true;
+
+        //Mira si es ascendente
+        if(ascendente==true){
+
+            n=n+1;
+            document.getElementById("contador").innerHTML=(n);
+
+        };
+        
+        //Mira si es descendente
+        if(ascendente==false){
+
+            n=n-1;
+            document.getElementById("contador").innerHTML=(n);
+
+        }
+
+    }
+
+ </script>
+
+    
+</body>
+</html>
