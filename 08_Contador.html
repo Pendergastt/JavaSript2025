@@ -14,6 +14,14 @@
             height: 100vh;
             margin: 0;
         }
+
+        .reborde {
+            border: 1px solid black;
+            align-content: center;
+            text-align: center;
+
+        }
+
         #contador {
             font-size: 30px;
             margin-bottom: 10px;
@@ -29,13 +37,16 @@
         #botonContador {
             align-self: center;
         }
+        #zonaInput {
+            
+        }
     </style>
 
 </head>
 <body>
 <!--
     
-    Página con botón que pone contar en elmedio.
+    Página con botón que pone contar en el medio.
     Encima del botón un número y cada vez que le das al botón, incrementa el contador
  
     Vamos a poner una cajita para que el usuario pueda poner un límite al número de clicks
@@ -46,10 +57,10 @@
  <div id="zonaInput">
 
     PON UN NÚMERO LÍMITE <br>
-    <input type="text" id="cajaLimite" style="display: flex; text-align: center; justify-content: center; justify-self: center;">
+    <input type="text" id="cajaLimite" class="reborde">
 
  </div>
- <div id="contador" style="border-color: black; border-radius: 5px;">
+ <div id="contador">
 
 
  </div>
@@ -62,6 +73,8 @@
     let n=0;
     let ascendente=true; //ponemos esta variable para decirle si estamos subiendo o bajando
     
+    // El botón sumar solo actua cuando lo pulsamos
+
     function sumar(){
 
         let limiteSup = document.getElementById("cajaLimite").value;
