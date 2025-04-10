@@ -39,4 +39,21 @@ If
 
 
     if(n==undefined) sería para preguntar si la variable existe y no tiene nada
+
+
+    cuando programamos java en una página lo que hacemos es poner la etiqueta script para luego, dentro, poner todas las rutinas, las funciones... todo
+
+    Puedes ponerlo dentro de las etiquetas pero también puedes ponerlas como un archivo distinto donde están todas las instrucciones que tienen que seguir.
+
+    para ejecutar las acciones del script lo que tenems que hacer es darle una instrucción desde el botón o desde lo que sea. tenemos que llamar a las funciones desde los botones generalmente.
+
+    Eso lo hacemos desde onclick pero hay otros EVENTOS posibles. Onmouseover, onmouseout... esos sucesos son los que tenemos que ver y entender cómo funcionan para poder hacer las llamadas correctas a las funciones.
+
+    // IMPORTANTE //
+    EN LAS ETIQUETAS ES MUY IMPORTANTE PONER UN ID SI ES QUE QUEREMOS REFERIRNOS A ELLAS.
+
+    Al poner en la etiqueta de html un id, podemos hacer referencia directa desde javascript para recoger los datos, o decirle que escriba o ponga algo en un sitio concreto...
+
+    Las buenas y lógicas prácticas son coger el resultado o el valor de una de las etiquetas para asignarselas a una variable y luego ya con eso modificarlas u operar como nosotros queramos.
+
     
