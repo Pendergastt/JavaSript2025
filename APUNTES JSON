@@ -1,0 +1,24 @@
+APUNTES JSON
+
+JSON
+
+JavaScript Object Notation.
+
+Es una parte bastante importante de la programación.
+Si quieres representar en un solo dato, todos los datos de una entidad, lo agrupas en un objeto JSON y no lo tienes que tener en varias variables.
+Todo se encuentra en un objeto; una caja, donde están todas esas cosas.
+
+Lo representaríamos de la siguiente manera
+
+let persona={"Nombre":"juan","email":"bla@gmail.com","edad":33}
+
+importante: VA ENTRE LLAVES Y definimos argumento, DOS PUNTOS, VALOR DE LA variable
+
+
+esto es un JSON que tienen las propiedades del objeto persona.
+
+si queremos ver qué valor hay en algo concreto, tenemos que poner:
+
+nombreJson.nombredelapropiedad
+
+console.log(persona.edad), por ejemplo
