@@ -65,8 +65,8 @@ para ello hacemos un array que después nos lo separe en base al "|",
         let html=""
         for (d of direcciones){
 
-            html= html + d + "<br>" //usar document.getid....
-
+            //html= html + d + "<br>"
+            html+= d +"<br>"
         }
 
         document.getElementById("resultados").innerHTML=html

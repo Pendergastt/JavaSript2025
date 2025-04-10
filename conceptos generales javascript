@@ -1,0 +1,42 @@
+Estos son notas de javascript
+
+Las variables son cajitas donde metemos datos
+las declaramos poniendo
+    let nombre;
+    var nombre;
+
+    Es el equivalente a DEFINIR de pseInt
+
+En javascript las variables son cajas vacías en general. No es un lenguaje tipado.
+Tipos de datos:
+    numérico: 30, 25, 2.5
+    texto o string = "Hola", "qué tal", todo entrecomillado.
+    booleanos (true o false)
+    objetos: que son conjuntos de atributos que se tratan como uno. se pueden copiar, manipular...
+
+
+Operadores
+    símbolos que usamos para hacer opreaciones con variables. con las que tienen datos
+
+    Aritméticos como el +, -, *, /, %. ++, --,
+    Comparación: <, >, >=, <=, ==, != (distinto)
+    Lógicos como el and, or... && el igual, || el ó, y el no !
+    ASIGNACION =, +=, -=, *=
+    otros: new, instanceof
+
+If
+    if(condicion){
+
+        instrucciones si se cumple condicion
+
+    } else {
+
+        instrucciones si NO se cumple la condicion
+
+    }
+
+    Lo que hace esto es decir: si la condición que está entre paréntesis se cumple entonces hace lo de DENTRO DE LOS PARÉNTESIS
+
+
+    if(n==undefined) sería para preguntar si la variable existe y no tiene nada
+    
