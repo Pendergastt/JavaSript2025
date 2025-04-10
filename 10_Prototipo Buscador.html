@@ -34,7 +34,8 @@ let datos=[
         "deportes|http://www.todofutbol.com",
         "libros|http://www.fnac.es",
         "cocina|http://www.fogones.es",
-        "juegos|http://www.game.es"
+        "juegos|http://www.game.es",
+        "deportes|www.elrincondelvago"
         ];
 
 
@@ -69,7 +70,7 @@ para ello hacemos un array que después nos lo separe en base al "|",
             html+= d +"<br>"
         }
 
-        document.getElementById("resultados").innerHTML=html
+        document.getElementById("resultados").innerHTML="<br>"+html
         console.log(direcciones)
         
 

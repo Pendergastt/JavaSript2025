@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    Introduce nombre:<input type="text" id="nombre"><button onclick="guardar();">GUARDAR</button>
+    Introduce nombre:<input type="text" id="nombre" placeholder="Introduce el texto aquí" autofocus><button id="añadir" onclick="guardar();">GUARDAR</button>
     <br><br>
     <button onclick="mostrar();">MOSTRAR</button>
     <br><br>
@@ -54,6 +54,7 @@
 
             //lo ponemos fuera de todo para que se limpie la cajita
         document.getElementById("nombre").value="";
+        document.getElementById("nombre").focus();
         console.log(contactos)
         }
 
@@ -62,51 +63,21 @@
     
 
     function mostrar(){
-            // Ponemos una variable html donde estructuramos el texto que queremos que nos saque.
-            // Si no ponemos esta variable y la dejamos solamente con lo del document.getelement
-            // lo que pasaría es que estaría todo el tiempo aña
-
 
         let html="";
-    /*    for (n of contactos){ //tengo que intentar que con un comando más podamos sacar la i
-
-            html=html + n + " " + "--------" + "<a onclick=`borrar();`>" + `<img src="papelera.png" height="20px" width="20px">` + "<br>"
-            html=document.getElementById("listaNombres").innerHTML=html;
-        }
-    */        
 
 
-    //REVISAR MOSTRAR PORQUE NO MUESTRA
-    for(let i=0;i<contactos.length;i++){
-                //html=+"<b>"+listaNombres[i]+"<br>"+ "<a onclick='borrar("+i+");'><img src='papelera.png' height='20px' width='20px'></a>"+"<br>";
-                    html=+`<b>${contactos[i]}<b>`+ "<br>" + `<a onclick='borrar(${i});'><img src='papelera.png' height='20px' width='20px'></a>`+"<br>";
-                
+        for(let i=0;i<contactos.length;i++){
+
+                html=html+`<b>${contactos[i]}<b>`+`<a onclick='borrar(${i});'><img src='papelera.png' height='20px' width='20px'></a>`+"<br>";
+
             }
 
             document.getElementById("listaNombres").innerHTML=html;
 
         }    
 
-                // ESTO ES SOLO CON EL DOCUMENT.GETELEMENT sin variable
-        /*     
 
-                Con lo de añadir creamos el array.
-                Con esta función estamos recorriendo el array y diciendo que nos lo muestre en el div
-                pero si volvemos a darle lo imprime otra vez       
-
-                for (n of contactos){
-
-                    document.getElementById("listaNombres").innerHTML=+n;
-
-                }
-            }
-
-            */ 
-
-    function borrarLista(){
-        document.getElementById("listaNombres").innerHTML=" "
-
-    }
 
     function borrar(pos){
         //splice borra el nombre que está en la posicion a, hasta b (nombre.splice(a,b))
