@@ -37,6 +37,7 @@ div{
 //me pide los datos de un alumno.
 //nombre curso y nota
 let jsonAlumno;
+let alumnos=[];
 function guardar(){
 
     let txtNombre= document.getElementById("nombre").value;
@@ -44,13 +45,18 @@ function guardar(){
     let txtNota= document.getElementById("nota").value;
 
     jsonAlumno={"nombre":txtNombre,"curso":txtCurso,"nota":txtNota};
+    alumnos.push(jsonAlumno);
 
 }
 
 function visualizar(){
     let frase= `Te llamas ${jsonAlumno.nombre}, estás en ${jsonAlumno.curso} y tienes una nota de ${jsonAlumno.nota}`
     document.getElementById("resultado").innerHTML=frase
-    console.log(jsonAlumno);
+    console.log(alumnos);
+
+    let frase2=`Te llamas ${alumnos[0].nombre}`; // dentro de alumno, buscamos la primera posición, que es un objeto que tienen propiedades. por eso ponemos el .propiedad después del índice
+    // así, lo que hacemos es decirle que nos mire la propiedad nombre del objeto en la posición 0.
+    console.log(frase2);
 
 }
 
