@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="etiqueta1">
+        <p>Este es el espacio de la etiqueta 1</p>
+        
+    </div>
+    <hr>
+    <div id="etiqueta2">
+        <p>Este es el espacio de la etiqueta 2</p>
+    </div>
+    <hr>
+    <div id="etiqueta3">
+        <p> Este es el espacio de la etiqueta 3</p>
+    </div>
+    <script>
+
+        let suma=0
+        let contador=1
+
+        while(suma<1000){
+            suma+=contador
+            contador+=1
+
+        }
+
+        document.getElementById("etiqueta1").innerHTML=p+"<br>"+contador;
+        document.getElementById("etiqueta2").innerHTML=p+suma;
+        document.getElementById("etiqueta3").innerHTML=p+"<br>"+"Hola"
+
+
+    </script>
+</body>
+</html>

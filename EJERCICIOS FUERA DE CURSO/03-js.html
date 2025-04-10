@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 3</title>
+</head>
+<body>
+    
+
+    <script>
+// funcion suma lista que tenga array como argumento
+
+let a = 0;
+let b = prompt("Escribe varios números separados por coma");
+
+console.log(sumaLista(b));
+
+function sumaLista(){
+
+    let suma = b.split(",");
+    for (n of suma){
+
+        a+=parseInt(n);
+        console.log(a);
+
+    }
+
+    return a;
+}
+
+
+
+
+    </script>
+</body>
+</html>
