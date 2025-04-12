@@ -10,41 +10,22 @@
 
 </head>
     <style>
-
-        h1{
-            background-color: royalblue;
-            color: aliceblue;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-
-        }
-
-
         .datos{
-            width: auto;
-            font-size: large;
-            margin-bottom: 3px;
-            background-color: rgb(218, 218, 218);
-            color: rgb(0, 36, 66);
-            padding: 5px;
+            display: flex;
+            background-color: brown;
+            color: antiquewhite;
+            font-size: 30px;
+            padding: 2%;
             border-radius: 5px;
         }
 
-        hr{
-            
-            border-style: groove;
-            border-radius: 10px;
-            border-width: 5px;
+        .datos div{
+
+            color: aqua;
+
 
         }
 
-        button{
-            margin: 5px;
-            padding: 5px;
-            font-size: large;
-
-        }
 
 
 
@@ -66,12 +47,12 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         <h1>BIENVENIDO A SU BANCO PERSONAL</h1>
 
         <h3>SALDO INICIAL:</h3> <input class="datos" type="number" id="saldoInicial"><button id="grabarSaldo" onclick="grabarDinero();">GRABAR SALDO</button>
-        <hr>
 
     </div>
 
     <div id="cuerpoOperaciones">
-        <h3>CANTIDAD</h3><input type="number" id="operaciones" class="datos" ><br>
+        ///////////////////// MIRAR DIVISORES BONICOS ///////////////
+        <br>CANTIDAD<br><input type="number" id="operaciones" ><br>
         <button  id="ingresar" onclick="ingresarDinero()">INGRESAR</button><button id="retirar" onclick="retirarDinero()">RETIRAR</button><br><br>
         <button id="mostrar" onclick="mostrarDinero()">MOSTRAR</button>
     </div>
@@ -112,6 +93,7 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
     function ingresarDinero(){
 
         let a = parseInt(document.getElementById("operaciones").value);
+        let fecha = new Date();
         console.log(`Ingreso de ${a}`);
         saldoTotal+=a;
         ingresos.push(a);

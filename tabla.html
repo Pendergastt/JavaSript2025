@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabla</title>
+</head>
+<body>
+    
+<div> TABLA PRINCIPAL </div>
+<hr></hr>
+<input id="prueba" type="text"><button onclick="guardar();">GUARDAR</button><br>
+<button onclick="mostrar();">MOSTRAR</button>
+<div id="tabla"></div>
+
+
+
+
+</body>
+
+
+
+
+
+<script>
+
+    let datos=[];
+    let resultado="";
+    let fecha="";
+    
+
+    function guardar(){
+        let a = new Date();
+        let b = (document.getElementById("prueba").value).split(",");
+        fecha=`${a.getDate()}/${a.getMonth()}/${a.getFullYear()}`;
+        b.unshift(fecha);
+        console.log(b);
+        datos.push(b);
+        console.log(datos);
+
+        
+    };
+
+    function mostrar(){
+        
+
+
+
+    };
+
+
+</script>
+</html>
