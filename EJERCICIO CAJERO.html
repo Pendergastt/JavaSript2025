@@ -7,30 +7,33 @@
 
 
 
+
 </head>
+    <style>
+        .datos{
+            display: flex;
+            background-color: brown;
+            color: antiquewhite;
+            font-size: 30px;
+            padding: 2%;
+            border-radius: 5px;
+        }
+
+        .datos div{
+
+            color: aqua;
+
+
+        }
+
+
+
+
+
+    </style>
 
 <!-- No funcionan los estilos que no sean los ptincipales.
  no sé cómo hacer que funcione un estilo concreto de clase-->
-<style>
-    h1 {
-        color:rgb(255, 255, 255);
-        background-color: rgb(108, 121, 141);
-    };
-
-    h2 {
-        color: brown;
-        font-size: 50px;
-    };
-
-    .datos {
-    color: red;
-    font-size: 30px;
-    };
-
-    #MODIFICAR {
-        font-size: 80px;
-    }
-</style>
 
 <!--  Vamos a crear un simulacro de cajero automático. A grandes rasgos, campo de deino inicial y caja donde poner un importe y elegir si queremos meterlo o sacarlo
 con otro botón, que nos muestre los movimientos y el saldo final. El resto, a elección.
@@ -39,17 +42,11 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 
 <body>
 
-    <div id="MODIFICAR" class="datos">
-        <p>Hola qué tal</p>
-        <br>
-    </div>
-
-
     <div id="superior">
 
         <h1>BIENVENIDO A SU BANCO PERSONAL</h1>
 
-        <h3>SALDO INICIAL:</h3> <input type="number" id="saldoInicial"><button id="grabarSaldo" onclick="grabarDinero();">GRABAR SALDO</button>
+        <h3>SALDO INICIAL:</h3> <input class="datos" type="number" id="saldoInicial"><button id="grabarSaldo" onclick="grabarDinero();">GRABAR SALDO</button>
 
     </div>
 
@@ -129,6 +126,15 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         document.getElementById("principal").innerHTML=cuenta
 
     };
+
+    function resultado(){
+        
+
+
+
+
+
+    }
 
 
 
