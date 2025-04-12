@@ -4,7 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+
 </head>
+
+<!-- No funcionan los estilos que no sean los ptincipales.
+ no sé cómo hacer que funcione un estilo concreto de clase-->
+<style>
+    h1 {
+        color:rgb(255, 255, 255);
+        background-color: rgb(108, 121, 141);
+    };
+
+    h2 {
+        color: brown;
+        font-size: 50px;
+    };
+
+    .datos {
+    color: red;
+    font-size: 30px;
+    };
+
+    #MODIFICAR {
+        font-size: 80px;
+    }
+</style>
 
 <!--  Vamos a crear un simulacro de cajero automático. A grandes rasgos, campo de deino inicial y caja donde poner un importe y elegir si queremos meterlo o sacarlo
 con otro botón, que nos muestre los movimientos y el saldo final. El resto, a elección.
@@ -12,17 +38,26 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 -->
 
 <body>
+
+    <div id="MODIFICAR" class="datos">
+        <p>Hola qué tal</p>
+        <br>
+    </div>
+
+
     <div id="superior">
 
-        SALDO INICIAL: <input type="number" id="saldoInicial"><button id="grabarSaldo" onclick="grabar();">GRABAR SALDO</button>
+        <h1>BIENVENIDO A SU BANCO PERSONAL</h1>
+
+        <h3>SALDO INICIAL:</h3> <input type="number" id="saldoInicial"><button id="grabarSaldo" onclick="grabarDinero();">GRABAR SALDO</button>
 
     </div>
 
-    <div id="operaciones">
+    <div id="cuerpoOperaciones">
         ///////////////////// MIRAR DIVISORES BONICOS ///////////////
-        <br>CANTIDAD<br><input type="number"><br>
-        <button id="ingresar" onclick="ingresar()">INGRESAR</button><button id="retirar" onclick="retirar()">RETIRAR</button><br><br>
-        <button id="mostrar" onclick="mostrar()">MOSTRAR</button>
+        <br>CANTIDAD<br><input type="number" id="operaciones" ><br>
+        <button  id="ingresar" onclick="ingresarDinero()">INGRESAR</button><button id="retirar" onclick="retirarDinero()">RETIRAR</button><br><br>
+        <button id="mostrar" onclick="mostrarDinero()">MOSTRAR</button>
     </div>
 
     <div id="principal">
@@ -41,6 +76,59 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 
 
 <script>
+
+    let cuenta=""
+    let saldoInicial=0;
+    let ingresos=[];
+    let retiradas=[];
+    let saldoTotal=0;
+    let mostrar=false;
+
+    function grabarDinero(){ //Saldo inicial terminado
+
+        let a= parseInt(document.getElementById("saldoInicial").value);
+        saldoInicial=a;
+        saldoTotal=a;
+        console.log(`saldo inicial es ${saldoInicial}`);
+
+    };
+
+    function ingresarDinero(){
+
+        let a = parseInt(document.getElementById("operaciones").value);
+        console.log(`Ingreso de ${a}`);
+        saldoTotal+=a;
+        ingresos.push(a);
+        cuenta=`Ingreso de dinero de ${a} euros ------------- TOTAL ${saldoTotal}<br>`+cuenta;
+        //mostrarDinero();
+        console.log(`el saldo total es de +${saldoTotal}`);
+        console.log(ingresos);
+        if (mostrar==true) mostrarDinero();
+
+
+    };
+
+    function retirarDinero(){
+
+        let a = parseInt(document.getElementById("operaciones").value);
+        console.log(`Retirada de ${a}`);
+        saldoTotal-=a;
+        retiradas.push(a);
+        cuenta=`Retirada de dinero de ${a} euros ------------- TOTAL ${saldoTotal}<br>`+cuenta;
+        //mostrarDinero();
+        console.log(`el saldo total es de ${saldoTotal}`);
+        console.log(retiradas);
+        if (mostrar==true) mostrarDinero();
+
+    };
+
+    function mostrarDinero(){
+
+        mostrar=true;       
+
+        document.getElementById("principal").innerHTML=cuenta
+
+    };
 
 
 
