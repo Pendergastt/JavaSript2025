@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tabla</title>
+
+    <style>
+
+        #tabla{
+            color: blue;
+            grid-column: auto;
+            text-align: center;
+
+        }
+    </style>
+
+
+
 </head>
 <body>
     
@@ -11,7 +24,11 @@
 <hr></hr>
 <input id="prueba" type="text"><button onclick="guardar();">GUARDAR</button><br>
 <button onclick="mostrar();">MOSTRAR</button>
-<div id="tabla"></div>
+<div>
+    <table id="tabla">
+    
+    </table>
+</div>
 
 
 
@@ -27,6 +44,7 @@
     let datos=[];
     let resultado="";
     let fecha="";
+
     
 
     function guardar(){
@@ -41,12 +59,28 @@
         
     };
 
+    //DE PUTA MADRE. Ahora traslada esto al cajero automático. xD
     function mostrar(){
-        
+        let cabecera=`<tr>
+            <th id="fecha">FECHA</th>
+            <th id="concepto">concepto</th>
+            <th id="saldo">saldo</th>
+        </tr>`
+        let tabla="";
+        for (i=0;i<datos.length;i++){
+                let a= datos[i][0];
+                let b= datos[i][1];
+                let c="0";
+                if (datos[i][2]<0) {
+                    c=datos[i][2];
+                }else c= datos[i][2];
 
+                tabla=`<tr><td>${a}</td><td>${b}</td><td>${c}</td><br></tr>`+tabla
+            }
 
+            document.getElementById("tabla").innerHTML=cabecera+tabla
+        }
 
-    };
 
 
 </script>
