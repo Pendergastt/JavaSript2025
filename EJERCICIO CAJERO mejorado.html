@@ -9,28 +9,76 @@
 
 
 </head>
-    <style>
-        .datos{
-            display: flex;
-            background-color: brown;
-            color: antiquewhite;
-            font-size: 30px;
-            padding: 2%;
-            border-radius: 5px;
-        }
+<style>
 
-        .datos div{
+    h1{
+        background-color: royalblue;
+        color: aliceblue;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
 
-            color: aqua;
+    }
 
 
-        }
+    .datos{
+        width: auto;
+        font-size: large;
+        margin-bottom: 3px;
+        background-color: rgb(218, 218, 218);
+        color: rgb(0, 36, 66);
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    hr{
+        
+        border-style: groove;
+        border-radius: 10px;
+        border-width: 5px;
+
+    }
+
+    button{
+        margin: 5px;
+        padding: 5px;
+        font-size: large;
+
+    }
+
+    th{
+        color:azure;
+        background-color: cornflowerblue;
+        align-content: center;
+        border-left-style: solid;
+        border-right-style: solid;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    td{
+        background-color: beige;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+
+    }
+
+    .negativo{
+        color: brown;
+    }
+
+    .positivo{
+        color: rgb(5, 152, 197);
+    }
 
 
 
 
-
-    </style>
+</style>
 
 <!-- No funcionan los estilos que no sean los ptincipales.
  no sé cómo hacer que funcione un estilo concreto de clase-->
@@ -52,12 +100,16 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 
     <div id="cuerpoOperaciones">
         ///////////////////// MIRAR DIVISORES BONICOS ///////////////
-        <br>CANTIDAD<br><input type="number" id="operaciones" ><br>
+        <br>CANTIDAD<br><input type="number" id="operaciones" class="datos"><br>
         <button  id="ingresar" onclick="ingresarDinero()">INGRESAR</button><button id="retirar" onclick="retirarDinero()">RETIRAR</button><br><br>
         <button id="mostrar" onclick="mostrarDinero()">MOSTRAR</button>
     </div>
 
     <div id="principal">
+        <table id="tabla">
+
+
+        </table>
                
 <!-- esto lo pondremos después. o vemos a ver
         
@@ -80,6 +132,7 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
     let retiradas=[];
     let saldoTotal=0;
     let mostrar=false;
+    let fecha;
 
     function grabarDinero(){ //Saldo inicial terminado
 
@@ -90,17 +143,33 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 
     };
 
+    function obtenerFecha(){
+        let dia = new Date().getDate();
+        let mes= new Date().getMonth();
+        let año= new Date().getFullYear();
+        
+        return `${dia}/${mes}/${año}`;
+
+    }
+
+
     function ingresarDinero(){
 
         let a = parseInt(document.getElementById("operaciones").value);
-        let fecha = new Date();
+
         console.log(`Ingreso de ${a}`);
         saldoTotal+=a;
-        ingresos.push(a);
-        cuenta=`Ingreso de dinero de ${a} euros ------------- TOTAL ${saldoTotal}<br>`+cuenta;
-        //mostrarDinero();
-        console.log(`el saldo total es de +${saldoTotal}`);
+        ingresos.push(obtenerFecha(),a);
         console.log(ingresos);
+
+        if (saldoTotal>0){
+        cuenta=`<tr><td>${ingresos[0]}</td><td class="positivo">${a} €</td><td>aquí iría el concepto</td><td class="positivo">${saldoTotal} €</td></tr><br>`+cuenta;
+        }else {
+            cuenta=`<tr><td>${ingresos[0]}</td><td class="positivo">${a} €</td><td>aquí iría el concepto</td><td class="negativo">${saldoTotal} €</td></tr><br>`+cuenta;
+
+        };
+        console.log(`el saldo total es de +${saldoTotal}`);
+        console.log(cuenta);
         if (mostrar==true) mostrarDinero();
 
 
@@ -111,9 +180,16 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         let a = parseInt(document.getElementById("operaciones").value);
         console.log(`Retirada de ${a}`);
         saldoTotal-=a;
-        retiradas.push(a);
-        cuenta=`Retirada de dinero de ${a} euros ------------- TOTAL ${saldoTotal}<br>`+cuenta;
-        //mostrarDinero();
+        retiradas.push(obtenerFecha(),a);
+        console.log(retiradas);
+
+        if (saldoTotal<0){
+        cuenta=`<tr><td>${retiradas[0]}</td><td class="negativo">${a} €</td><td>aquí iría el concepto</td><td class="negativo">${saldoTotal} €</td></tr><br>`+cuenta;
+        }   else{
+
+            cuenta=`<tr><td>${retiradas[0]}</td><td class="negativo">${a} €</td><td>aquí iría el concepto</td><td class="positivo">${saldoTotal} €</td></tr><br>`+cuenta;
+            };
+
         console.log(`el saldo total es de ${saldoTotal}`);
         console.log(retiradas);
         if (mostrar==true) mostrarDinero();
@@ -121,21 +197,18 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
     };
 
     function mostrarDinero(){
-
+        let cabecera=`<tr>
+            <th id="fecha">FECHA</th>
+            <th id="importe">IMPORTE</th>
+            <th id="concepto">CONCEPTO</th>
+            <th id="saldo">SALDO TOTAL</th>
+        </tr>`
+        
         mostrar=true;       
 
-        document.getElementById("principal").innerHTML=cuenta
+        document.getElementById("tabla").innerHTML=cabecera+cuenta
 
     };
-
-    function resultado(){
-        
-
-
-
-
-
-    }
 
 
 
