@@ -11,6 +11,15 @@
 </head>
 <style>
 
+
+    #tabla{
+
+        display: flow;
+        max-height: 300px;
+        overflow: scroll;
+        width: fit-content;
+    }
+
     h1{
         background-color: royalblue;
         color: aliceblue;
@@ -105,9 +114,15 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         <button id="mostrar" onclick="mostrarDinero()">MOSTRAR</button>
     </div>
 
-    <div id="principal">
-        <img src="separador.png">
+    <div>
+        <img src="separador.png"><br>
 
+        <table id="cabeceraTabla">
+
+        </table>
+    </div>
+
+    <div>
         <table id="tabla">
 
 
@@ -192,6 +207,7 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         console.log(`el saldo total es de ${saldoTotal}`);
         console.log(retiradas);
         if (mostrar==true) mostrarDinero();
+        console.log(cuenta);
 
     };
 
@@ -203,9 +219,10 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
             <th id="saldo">SALDO TOTAL</th>
         </tr>`
         
-        mostrar=true;       
+        mostrar=true;      
 
-        document.getElementById("tabla").innerHTML=cabecera+cuenta
+        document.getElementById("cabeceraTabla").innerHTML=cabecera;
+        document.getElementById("tabla").innerHTML=cuenta;
 
     };
 
