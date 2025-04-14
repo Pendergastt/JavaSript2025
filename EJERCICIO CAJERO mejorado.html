@@ -29,6 +29,16 @@
 
     }
 
+    .cabecera{
+
+        background-color: rgb(240, 240, 240);
+        border: royalblue solid 3px;
+        border-radius: 5px;
+        width: fit-content;
+        
+
+    }
+
 
     .datos{
         width: auto;
@@ -87,11 +97,12 @@
     }
 
     td{
-        background-color: beige;
+        background-color: rgb(235, 235, 235);
         color: rgb(0, 0, 0);
         text-align: center;
         padding: 10px;
         font-weight: bold;
+        border-bottom: rgb(173, 173, 173) 2px solid;
 
     }
 
@@ -134,17 +145,11 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         <section><h3>CONCEPTO</h3><input class="datos" type="text" id="concepto"><br></section><br>
         <button  id="ingresar" onclick="ingresarDinero()">INGRESAR</button><button id="retirar" class="button.ingresar" onclick="retirarDinero()">RETIRAR</button><br><br>
         <button id="mostrar" onclick="mostrarDinero()" style="align-self: center;">MOSTRAR</button><br>
-
-    </div>
-
-    <div>
         <img src="separador.png"><br>
-        <table id="cabeceraTabla">
 
-        </table>
     </div>
 
-    <div>
+    <div id="cabez">
         <table id="tabla">
 
 
@@ -188,7 +193,7 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 
     function obtenerFecha(){
         let dia = new Date().getDate();
-        let mes= new Date().getMonth();
+        let mes= (new Date().getMonth())+1;
         let año= new Date().getFullYear();
         
         return `${dia}/${mes}/${año}`;
@@ -273,6 +278,9 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
             <th id="concepto">CONCEPTO</th>
             <th id="saldo">SALDO TOTAL</th>
         </tr>`
+
+        let a=document.getElementById("tabla");
+        a.classList.add("cabecera");
         
         mostrar=true;      
 
