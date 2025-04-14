@@ -11,7 +11,7 @@
 </head>
 <style>
 
-
+    section {display: inline-block;}
     #tabla{
 
         display: flow;
@@ -22,7 +22,7 @@
 
     h1{
         background-color: royalblue;
-        color: aliceblue;
+        color: azure;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -34,26 +34,44 @@
         width: auto;
         font-size: large;
         margin-bottom: 3px;
-        background-color: rgb(218, 218, 218);
+        background-color: rgb(223, 223, 223);
         color: rgb(0, 36, 66);
         padding: 5px;
         border-radius: 5px;
-    }
-
-    hr{
-        
-        border-style: groove;
-        border-radius: 10px;
-        border-width: 5px;
-
     }
 
     button{
         margin: 5px;
         padding: 5px;
         font-size: large;
-
+        color: rgb(0, 0, 0);
     }
+    
+    #ingresar{
+            background-color: rgb(134, 204, 42);
+            font-weight: 400;
+            
+        }
+
+    #retirar{
+            background-color: darkred;
+            color: azure;
+            font-weight: 500;
+        }
+
+    #grabarSaldo{
+            background-color: royalblue;
+            color: azure;
+            font-weight: 500;
+        }
+
+    #mostrar{
+            background-color: royalblue;
+            color: azure;
+            font-weight: 500;
+        }
+
+
 
     th{
         color:azure;
@@ -65,6 +83,7 @@
         border-right-width: 1px;
         padding-left: 10px;
         padding-right: 10px;
+        height: 30px;
     }
 
     td{
@@ -103,20 +122,23 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 
         <h1>BIENVENIDO A SU BANCO PERSONAL</h1>
 
-        <h3>SALDO INICIAL:</h3> <input class="datos" type="number" id="saldoInicial"><button id="grabarSaldo" onclick="grabarDinero();">GRABAR SALDO</button>
+        <h3>SALDO INICIAL:</h3> <input class="datos" type="number" id="saldoInicial"><button id="grabarSaldo" class="grabar" onclick="grabarDinero();">GRABAR SALDO</button><br><br>
+        <img src="separador.png" style="width: fit-content;">
+
 
     </div>
 
     <div id="cuerpoOperaciones">
-        <img src="separador.png">
-        <br>CANTIDAD<br><input type="number" id="operaciones" class="datos"><br>
-        <button  id="ingresar" onclick="ingresarDinero()">INGRESAR</button><button id="retirar" onclick="retirarDinero()">RETIRAR</button><br><br>
-        <button id="mostrar" onclick="mostrarDinero()">MOSTRAR</button>
+
+        <section><h3>CANTIDAD</h3><input class="datos" type="number" id="operaciones" style="margin-right: 20px;"><br></section>
+        <section><h3>CONCEPTO</h3><input class="datos" type="text" id="concepto"><br></section><br>
+        <button  id="ingresar" onclick="ingresarDinero()">INGRESAR</button><button id="retirar" class="button.ingresar" onclick="retirarDinero()">RETIRAR</button><br><br>
+        <button id="mostrar" onclick="mostrarDinero()" style="align-self: center;">MOSTRAR</button><br>
+
     </div>
 
     <div>
         <img src="separador.png"><br>
-
         <table id="cabeceraTabla">
 
         </table>
@@ -141,7 +163,7 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
 <script>
 
     let cuenta=""
-    let saldoInicial=0;
+    let saldoInicial;
     let ingresos=[];
     let retiradas=[];
     let saldoTotal=0;
@@ -151,10 +173,17 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
     function grabarDinero(){ //Saldo inicial terminado
 
         let a= parseInt(document.getElementById("saldoInicial").value);
-        saldoInicial=a;
-        saldoTotal=a;
+        
+        if(isNaN(a)){
+            alert("no tienes saldo");
+            }else {
+
+                saldoInicial=a;
+                saldoTotal=a;
+        
         console.log(`saldo inicial es ${saldoInicial}`);
 
+        };
     };
 
     function obtenerFecha(){
@@ -170,21 +199,34 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
     function ingresarDinero(){
 
         let a = parseInt(document.getElementById("operaciones").value);
+        let concepto = document.getElementById("concepto").value;
 
-        console.log(`Ingreso de ${a}`);
-        saldoTotal+=a;
-        ingresos.push(obtenerFecha(),a);
-        console.log(ingresos);
+         if (a==""||a==null||concepto==""){
 
-        if (saldoTotal>0){
-        cuenta=`<tr><td>${ingresos[0]}</td><td class="positivo">${a} €</td><td>aquí iría el concepto</td><td class="positivo">${saldoTotal} €</td></tr><br>`+cuenta;
-        }else {
-            cuenta=`<tr><td>${ingresos[0]}</td><td class="positivo">${a} €</td><td>aquí iría el concepto</td><td class="negativo">${saldoTotal} €</td></tr><br>`+cuenta;
+                alert("Tienes que introducir un importe y un concepto");
 
-        };
-        console.log(`el saldo total es de +${saldoTotal}`);
-        console.log(cuenta);
-        if (mostrar==true) mostrarDinero();
+            }else if(a!=0 && concepto!=""){
+
+                console.log(`Ingreso de ${a}`);
+                saldoTotal+=a;
+                ingresos.push(obtenerFecha(),a);
+                console.log(ingresos);
+
+                if (saldoTotal>0){
+                cuenta=`<tr><td>${ingresos[0]}</td><td class="positivo">${a} €</td><td>${concepto}</td><td class="positivo">${saldoTotal} €</td></tr><br>`+cuenta;
+                }else {
+                    cuenta=`<tr><td>${ingresos[0]}</td><td class="positivo">${a} €</td><td>${concepto}</td><td class="negativo">${saldoTotal} €</td></tr><br>`+cuenta;
+
+                };
+                console.log(`el saldo total es de +${saldoTotal}`);
+                console.log(cuenta);
+                if (mostrar==true) mostrarDinero();
+                document.getElementById("operaciones").value="";
+                document.getElementById("concepto").value="";
+                document.getElementById("operaciones").focus();
+
+
+            };
 
 
     };
@@ -192,22 +234,35 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
     function retirarDinero(){
 
         let a = parseInt(document.getElementById("operaciones").value);
-        console.log(`Retirada de ${a}`);
-        saldoTotal-=a;
-        retiradas.push(obtenerFecha(),a);
-        console.log(retiradas);
+        let concepto = document.getElementById("concepto").value;
 
-        if (saldoTotal<0){
-        cuenta=`<tr><td>${retiradas[0]}</td><td class="negativo">${a} €</td><td>aquí iría el concepto</td><td class="negativo">${saldoTotal} €</td></tr><br>`+cuenta;
-        }   else{
+       if (a==""||a==null||concepto==""){
 
-            cuenta=`<tr><td>${retiradas[0]}</td><td class="negativo">${a} €</td><td>aquí iría el concepto</td><td class="positivo">${saldoTotal} €</td></tr><br>`+cuenta;
+                alert("Tienes que introducir un importe y un concepto");
+
+            }else if(a!=0 && concepto!=""){
+
+                console.log(`Retirada de ${a}`);
+                saldoTotal-=a;
+                retiradas.push(obtenerFecha(),a);
+                console.log(retiradas);
+
+                if (saldoTotal<0){
+                cuenta=`<tr><td>${retiradas[0]}</td><td class="negativo">-${a} €</td><td>${concepto}</td><td class="negativo">${saldoTotal} €</td></tr><br>`+cuenta;
+                }   else{
+
+                    cuenta=`<tr><td>${retiradas[0]}</td><td class="negativo">-${a} €</td><td>${concepto}</td><td class="positivo">${saldoTotal} €</td></tr><br>`+cuenta;
+                    };
+
+                console.log(`el saldo total es de ${saldoTotal}`);
+                console.log(retiradas);
+                if (mostrar==true) mostrarDinero();
+                console.log(cuenta);
+                document.getElementById("operaciones").value="";
+                document.getElementById("concepto").value="";
+                document.getElementById("operaciones").focus();
+
             };
-
-        console.log(`el saldo total es de ${saldoTotal}`);
-        console.log(retiradas);
-        if (mostrar==true) mostrarDinero();
-        console.log(cuenta);
 
     };
 
@@ -221,8 +276,7 @@ con otro botón, que nos muestre los movimientos y el saldo final. El resto, a e
         
         mostrar=true;      
 
-        document.getElementById("cabeceraTabla").innerHTML=cabecera;
-        document.getElementById("tabla").innerHTML=cuenta;
+        document.getElementById("tabla").innerHTML=cabecera+=cuenta;
 
     };
 
