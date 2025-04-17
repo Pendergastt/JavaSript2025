@@ -56,7 +56,10 @@ para ello hacemos un array que después nos lo separe en base al "|",
 
 */
 
-            console.log(i);
+            if (i.tematica==comparar) direcciones.push(i.direccion);
+            console.log(direcciones);
+
+/*            console.log(i);
             let item = i.split("|");
             console.log(item);
             if (item[0]==comparar){
@@ -64,6 +67,7 @@ para ello hacemos un array que después nos lo separe en base al "|",
             }
 
         }
+*/            
         let html=""
         for (d of direcciones){
 
@@ -76,7 +80,8 @@ para ello hacemos un array que después nos lo separe en base al "|",
         
 
 
-    }
+        };
+    };
 
 
 
