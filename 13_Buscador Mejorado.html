@@ -13,6 +13,28 @@
     .- al pulsar aparece debajo una lista de direcciones asociados con la temática que hemos metido.
     
     -->
+
+    <div id="insertar">
+
+        INSERTA TUS PÁGINAS<br><br>
+        TIPO<input type="text" id="tipo" placeholder="solo un tipo"><br><br>
+        PAGINAS<input type="text" id="pagina" placeholder="separadas por comas"><br>
+        <br>
+        <button id="añadirPagina" onclick="añadirPagina();">AÑADIR PAGINA</button>
+
+    </div>
+    <hr>
+
+    AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
+    ESTA ES UNA LISTA DE LAS TEMÁTICAS DISPONIBLES.<br><br>
+    
+    <div id="listaTematicas">
+
+        
+
+        </div>
+
+
     TEMÁTICA: <input type="text" id="tematica">
     <br><br>
     <button id="buscar" onclick="buscar();">BUSCAR</button>
@@ -84,6 +106,42 @@ para ello hacemos un array que después nos lo separe en base al "|",
     };
 
 
+    
+    // IMPLEMENTAR LISTA DE TEMATICAS
+    // posiblemente con array de deportes y paginas en vez de solo datos?
+    //REVISAR EL QUE NO REPITA DENTRO DEL ARRAY
+
+    function listaPaginas(){
+        let a=[datos[0].tematica];
+        
+        for (i of datos){
+            for (j of a){
+                if (j!=i.tematica){
+                a.push(i.tematica);
+                }
+            console.log(a);
+                };
+
+        };
+
+        document.getElementById("listaTematicas").innerHTML=a
+
+    };
+
+    
+
+    function añadirPagina(){
+        let a={tematica:"", direccion:""};
+        console.log(a);
+        a.tematica=document.getElementById("tipo").value;
+        a.direccion=document.getElementById("pagina").value;
+        console.log(a);
+        datos.push(a);
+        console.log(datos);
+                
+        listaPaginas();
+
+    }
 
 
 
