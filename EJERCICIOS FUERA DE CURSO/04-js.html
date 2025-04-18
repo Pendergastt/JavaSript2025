@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 4</title>
+</head>
+<body>
+
+
+
+    <script>
+    /*
+    
+    script lee numeros y los pone en array.
+    nos muestra array y nos dice pares e impares.
+    datos termina cuando 0 se mete
+    solo indices y longitudes
+
+    */  
+
+    let numeros=[];
+    let terminar=false;
+    let indice=0;
+    while (terminar==false){
+        let a = prompt("Introduce un número.\nSi quieres terminar introduce'0'");
+        console.log(a);
+        if (isNaN(a)) a = prompt("Tiene que ser un número. Vuelve a introducir un número. \nSi quieres terminar introduce'0'");
+        if (a==0){
+            terminar=true;
+            break;
+        }else {
+
+            numeros[indice]=a;
+            indice++;
+
+        };
+
+
+    };
+    let pares=0;
+    let impares=0;
+    for (i=0;i<numeros.length;i++){
+
+        if (numeros[i]%2!==0) impares++;
+        else pares++
+    };
+
+    document.write(numeros+"<br>");
+    document.write(`Hay ${pares+impares} números<br>`);
+    document.write(`Hay ${pares} números pares<br>`);
+    document.write(`Hay ${impares} numeros impares<br>`);
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+/*
+        funcion que mirará el array y nos dirá, valor o índice según se lo digamos
+*/
+
+
+        let a=[5,7,12,16,4,2,31,15,26];
+        
+        let opcion=prompt("Indícame qué quieres que te muestre\nV - Valor más bajo del array.\nI - Índice del menor valor del array.");
+
+        
+        console.log(minimo(a,opcion));
+
+        function minimo(a,opcion){
+
+            if (opcion=="V" || opcion=="v"){
+                
+                return `El valor menor es el ${Math.min(...a)}`;
+
+            };
+
+            if (opcion=="I" || opcion=="i"){
+                
+                let minimo= Math.min(...a);
+
+                return `La posición en la que se encuentra el menor valor es la ${a.indexOf(minimo)}`;
+                
+            };
+
+        }
+
+
+    </script>
+</body>
+</html>

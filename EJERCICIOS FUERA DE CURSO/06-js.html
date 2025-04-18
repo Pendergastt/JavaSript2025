@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+
+
+
+    <script>
+/*
+        buscar si una letra está dentro del array pero sin usar métodos de array
+*/
+
+        let abecedario=["a","f","s","v","h","e","y","t","j","i","ñ","l"];
+            let a=prompt("Introduce una letra y veremos si está dentro del array");
+            let b=abecedario;
+            letra(a,b);
+        function letra(a,b){
+            let repetida=false
+            for (i=0;i<b.length;i++){
+
+                if (a==abecedario[i]){
+                    console.log("La letra está en el array");
+                    repetida=true;
+                    break;                 
+                };             
+
+            };
+            if (repetida==false) console.log("La letra no está en el array");
+
+        };
+
+
+
+
+    </script>
+</body>
+</html>
