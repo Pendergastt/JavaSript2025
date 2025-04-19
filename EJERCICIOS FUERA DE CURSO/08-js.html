@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+
+
+    <script>
+/*
+        damos un array y devuelve la lista del array separados por guión
+*/
+
+        let colores=["rojo","verde","azul","negro"];
+        let numeros=[2,3,2,4,2,5];
+        let nombres=["juan","Samuel","Luis","María","Elena"];
+        let listaArray="";
+
+        let a=prompt("Dime el array del que quieres hacer la lista:\n1.- Colores\n2.- numeros\n3.-Nombres");
+        switch (a){
+            case "1":
+                a=colores;
+                break;
+            case "2":
+                a=numeros;
+                break;
+            case"3":
+                a=nombres;
+                break;
+        }
+
+        console.log(lista(a));
+
+        function lista(array){
+            listaArray=a[0];
+            for (n=1;n<a.length;n++){
+                listaArray+=`-${a[n]}`;
+
+            };
+
+            return listaArray;
+
+        }
+
+    </script>
+</body>
+</html>

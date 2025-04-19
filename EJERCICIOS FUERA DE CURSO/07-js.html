@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+/*
+
+        funcion esVocal() que nos diga si es vocal o no. Usar arrays
+
+*/
+
+        let vocales=["a","e","i","o","u"];
+
+        let letra;
+
+        esVocal(letra);
+
+
+    function esVocal(){
+        letra= prompt("Introduce una letra (sin acentos) y te diré si es vocal o no").toLowerCase();
+        console.log(letra);
+        
+        while(parseInt(letra)*0==0) letra=prompt("He dicho una letra, no un número.");
+
+        for (n of vocales){
+
+            if (n==letra) console.log(`${letra} es una vocal`);
+            else console.log(`${letra} no es una vocal. es una consonante`);
+
+        };
+
+        
+
+
+            
+
+
+        
+    }
+
+    </script>
+</body>
+</html>

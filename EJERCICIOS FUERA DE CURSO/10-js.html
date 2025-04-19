@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 10</title>
+</head>
+<body>
+    
+
+
+    <script>
+/*
+        pares producto precio separados por ":". pongo nombre y me dice precio
+*/
+
+
+        let productos=["monitor:200€","teclado:30€","ratón:15€","torre:1200€"];
+        let producto=prompt("¿Qué quieres comprar?\n1.- monitor\n2.- teclado\n3.-ratón\n4.- torre");
+        console.log(pedido(producto));
+    function pedido(producto){
+
+        for (n of productos){
+            let b=n.split(":");
+            if (b[0]==producto) return `El producto ${producto} cuesta ${b[1]}`
+        };
+        
+    };
+
+
+    </script>
+</body>
+</html>

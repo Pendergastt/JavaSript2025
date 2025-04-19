@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 9</title>
+</head>
+<body>
+    
+
+
+    <script>
+/*
+        array dos valores, dia y persona.
+        yo le digo lunes, la funcion me devuelve la persona que trabaja ese dia
+*/
+
+        let horarios=["lunes-María","martes-Luis","miércoles-Luis","jueves-Pedro","viernes-Luis"];
+        console.log(personal());
+        function personal(){
+            let a=prompt("Introduce un día para ver quién trabaja ese día");
+            let contador=0;
+            let diasTrabajo=`${a} trabaja `;
+/*            for (n of horarios){
+                console.log(n);
+                let b=(n.split("-"));
+                if (b[0]==a) {
+                    contador=1
+                    return `El ${a} trabaja ${b[1]}`;
+                };
+            };
+            if (contador==0) return `No trabaja nadie en ${a}`;
+*/           
+
+                for (n of horarios){
+                    console.log(n);
+                    let b=(n.split("-"));
+                    if (b[1]==a && contador<1) {
+                        diasTrabajo+=`en ${b[0]}`;
+                        contador++
+                    }else if(b[1]==a && contador!=0){
+                        diasTrabajo+=`, ${b[0]}`;
+                    };
+                };
+            if (contador==0) return `No trabaja nadie en ${a}`;
+            if (contador!=0) return diasTrabajo;
+
+        };
+
+
+    </script>
+</body>
+</html>
