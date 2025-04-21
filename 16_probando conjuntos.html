@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="guardar" onclick="guardar();">GUARDAR</button><input type="text" id="nombre"><br><br>
+    <button id="mostrar" onclick="mostrar();">MOSTRAR</button><br>
+    <button id="mostrar" onclick="crearDesdeArray();">CREAR DESDE ARRAY</button>
+
+
+
+    
+
+
+    <script>
+
+        let nombres=new Set();
+// construir un conjunto a través de un array
+        function crearDesdeArray(){
+            let existentes=["c1","c2","c2","c4","c3","c3"];
+
+            //lo que hacemos es crear un set a partir del array "existentes"
+            nombres=new Set(existentes);
+            console.log(nombres);
+
+
+
+        }
+function guardar(){
+    nombres.add(document.getElementById("nombre").value);
+
+    // Los sets tienen una función para ver si ya existe el dato dentro.
+    // Esta función es .has()
+    console.log(nombres);
+};
+
+function mostrar(){
+    //volcar conjunto en array
+    let nuevoArray=[...nombres];
+    console.log(nuevoArray);
+
+
+};
+
+
+    </script>
+</body>
+</html>

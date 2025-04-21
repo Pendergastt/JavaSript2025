@@ -21,4 +21,22 @@ si queremos ver qué valor hay en algo concreto, tenemos que poner:
 
 nombreJson.nombredelapropiedad
 
-console.log(persona.edad), por ejemplo
+console.log(persona.edad), por ejemplo.
+
+
+
+ALMACENAR GRUPOS DE DATOS EN JAVASCRIPT
+
+arrays/listas
+Es una de las formas más utilizadas para guardar datos
+
+pero para guardar datos, también tenemos CONJUNTOS
+
+el conjunto lo creamos así:
+
+    let conjunto= new Set();
+    para añadir, conjunto.add(30);
+
+la diferencia es que las listas tienen una posición. Los conjuntos NO TIENEN POSICION
+UN CONJUNTO NO ADMITE DUPLICADOS
+    CONJUNTO.SIZE ES 

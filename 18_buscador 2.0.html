@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador</title>
+</head>
+<body>
+    <!-- 
+    
+    NOS VA A APARECER UN COMBOBOX (DESPLEGABLE) CON EL CONJUNTO DE TEMÁTICAS QUE TENEMOS
+    Y QUE NOS DEVUELVA LAS 
+
+    -->
+
+    <div id="insertar">
+
+        INSERTA TUS PÁGINAS<br><br>
+        TIPO<input type="text" id="tipo" placeholder="solo un tipo"><br><br>
+        PAGINAS<input type="text" id="pagina" placeholder="separadas por comas"><br>
+        <br>
+        <button id="añadirPagina" onclick="añadirPagina();">AÑADIR PAGINA</button>
+
+    </div>
+    <hr>
+
+    AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
+    ESTA ES UNA LISTA DE LAS TEMÁTICAS DISPONIBLES.<br><br>
+    
+    <div id="listaTematicas">
+
+        
+
+        </div>
+
+
+    TEMÁTICA: <input type="text" id="tematica">
+    <br><br>
+    <button id="buscar" onclick="buscar();">BUSCAR</button>
+
+    <div id="resultados"><!-- Aquí le ponemos los resultados -->
+
+    </div>
+
+    <script>
+
+//hemos definidoo una función pero tenemos que inventarnos los datos de las temáticas
+//Así que nos vamos a inventar los datos que vamos a poner
+
+//Haremos un array.
+
+//INTENTA HACERLO EN JSON
+
+let datos=[
+        {"tematica":"deportes","direccion":"http://www.marca.es/"},
+        {"tematica":"libros","direccion":"http://www.puntolibro.es/"},
+        {"tematica":"deportes","direccion":"http://www.todofutbol.com/"},
+        {"tematica":"libros","direccion":"http://www.fnac.es/"},
+        {"tematica":"cocina","direccion":"http://www.fogones.es/"},
+        {"tematica":"juegos","direccion":"http://www.game.es/"}
+        ]; 
+
+
+
+        function select()
+
+
+    function buscar(){
+
+        let direcciones=[];
+        let comparar = document.getElementById("tematica").value;
+        direcciones.push(comparar);
+
+
+
+        for(i of datos){
+
+        if (i.tematica==comparar) direcciones.push(i.direccion);
+            console.log(direcciones);
+
+        let html=""
+
+        for (d of direcciones){
+
+            html+= d +"<br>"
+        }
+
+        document.getElementById("resultados").innerHTML="<br>"+html
+        console.log(direcciones)
+
+        };
+    };
+    
+    // IMPLEMENTAR LISTA DE TEMATICAS
+    // posiblemente con array de deportes y paginas en vez de solo datos?
+    //REVISAR EL QUE NO REPITA DENTRO DEL ARRAY
+
+    // intentar ver si no me ducplica las temáticas. con función
+
+        let listado=[datos[0].tematica];
+
+    function listaPaginas(){
+        let c=false;
+        for (i of datos){
+            let b=i.tematica
+            console.log(b);
+        };
+
+        for(i of listado){ //hacemos un i para el primero y luego otro recorrido del array
+            for (j of listado){ //vuelve a recorrer para j el array
+
+            }
+            let contador=0;
+            if (contador<1) 
+        listado.find(function repe(b){b==listado[j]}); //metodo find erroneo
+        console.log(listado.find(function repe(b){b==listado[j]}));
+
+        };
+
+            console.log(listado);
+
+
+            //if(a.find(i.tematica => i.tematica==i)) a.push(i.tematica);
+            //console.log(a);
+            
+        };
+
+
+
+    function añadirPagina(){
+        let a={tematica:"", direccion:""};
+        console.log(a);
+        a.tematica=document.getElementById("tipo").value;
+        a.direccion=document.getElementById("pagina").value;
+        console.log(a);
+        datos.push(a);
+        console.log(datos);
+
+        listaPaginas();
+                
+    };
+
+
+
+    </script>
+
+
+</body>
+</html>

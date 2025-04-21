@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<select id="ciudades">
+    <option value="25">MADRID</option> //EL value es lo que te devuelve al seleccionar MADRID. que puede ser una página o un valor"
+    <option>TOLEDO</option>
+    <option>BARCELONA</option>
+    <option>CADIZ</option>
+    <option>VALENCIA</option>
+    <option>SEGOVIA</option>
+
+
+</select>
+<button onclick="ver();">VER SELECCIONADO</button>
+
+
+    <script>
+    function ver(){
+
+        console.log(document.getElementById("ciudades").value);
+
+    }
+
+
+    </script>
+</body>
+</html>
