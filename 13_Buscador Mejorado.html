@@ -71,57 +71,48 @@ let datos=[
 
 
         for(i of datos){
-/*           
 
-Vale, lo que queremos hacer recorrer el array que tiene la categoria y la dirección para separar las ya que dentro hay texto
-para ello hacemos un array que después nos lo separe en base al "|",
-
-*/
-
-            if (i.tematica==comparar) direcciones.push(i.direccion);
+        if (i.tematica==comparar) direcciones.push(i.direccion);
             console.log(direcciones);
 
-/*            console.log(i);
-            let item = i.split("|");
-            console.log(item);
-            if (item[0]==comparar){
-                direcciones.push(item[1]);
-            }
-
-        }
-*/            
         let html=""
+
         for (d of direcciones){
 
-            //html= html + d + "<br>"
             html+= d +"<br>"
         }
 
         document.getElementById("resultados").innerHTML="<br>"+html
         console.log(direcciones)
-        
-
 
         };
     };
-
-
     
     // IMPLEMENTAR LISTA DE TEMATICAS
     // posiblemente con array de deportes y paginas en vez de solo datos?
     //REVISAR EL QUE NO REPITA DENTRO DEL ARRAY
+
+    // intentar ver si no me ducplica las temáticas. con función
+
         let listado=[datos[0].tematica];
+
     function listaPaginas(){
         let c=false;
         for (i of datos){
             let b=i.tematica
             console.log(b);
-            for(j=0; j<listado.length;j++){
-                
-                listado.find(function repe(b){b==listado[j]});
-                console.log(listado.find(function repe(b){b==listado[j]}));
+        };
 
-            };
+        for(i of listado){ //hacemos un i para el primero y luego otro recorrido del array
+            for (j of listado){ //vuelve a recorrer para j el array
+
+            }
+            let contador=0;
+            if (contador<1) 
+        listado.find(function repe(b){b==listado[j]}); //metodo find erroneo
+        console.log(listado.find(function repe(b){b==listado[j]}));
+
+        };
 
             console.log(listado);
 
@@ -130,12 +121,8 @@ para ello hacemos un array que después nos lo separe en base al "|",
             //console.log(a);
             
         };
-
-        //document.getElementById("listaTematicas").innerHTML=a
-
     };
 
-    
 
     function añadirPagina(){
         let a={tematica:"", direccion:""};
@@ -145,6 +132,8 @@ para ello hacemos un array que después nos lo separe en base al "|",
         console.log(a);
         datos.push(a);
         console.log(datos);
+
+        listaPaginas();
                 
     };
 

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #tablaContactos{
+            text-align: center;
+
+        }
+        th{
+            background-color: royalblue;
+            color: rgb(242, 242, 242);
+            padding: 5px;
+
+        }
+    </style>
+</head>
+<body>
+
+    Introduce nombre:<input type="text" id="nombre" placeholder="Nombre del contacto" title="Pon el nombre aquí">
+    <br>
+    Introduce teléfono:<input type="number" id="telefono" placeholder="Número de teléfono" title="Pon el teléfono aquí">
+    <br>
+    Introduce correo electrónico:<input type="text" id="correo" placeholder="Número email" title="Pon el email aquí">
+    <br>
+    <button id="añadir" onclick="guardar();">GUARDAR</button>
+    <br>
+
+    
+    <br>
+    <button onclick="mostrar();">MOSTRAR</button>
+    <br><br>
+    <table id="tablaContactos">
+
+    </table>
+    <br>
+        <button onclick="borrarLista();">BORRAR LISTA</button>
+
+    <script>
+
+    let contactos=[];
+
+    function guardar(){
+
+        // Vamos a impedir que los nombres se repitan
+        // nombre, email y telefono
+
+        let i = document.getElementById("nombre").value;
+        let j = document.getElementById("telefono").value;
+        let k = document.getElementById("correo").value;
+        let contacto={"nombre":i,"telefono":j,"correo":k};
+        
+        if (document.getElementById("nombre").value==""){
+
+            alert("El campo no puede estar vacío")
+        }else {
+
+        let igual=false
+        for (n of contactos){  //poner otro if y otra variable para los ""
+            if (n.telefono==contacto.telefono){
+                    alert("El telefono ya existe");
+                igual=true;
+            };
+            if (n.correo==contacto.correo){
+                alert("El correo ya existe");
+                igual=true;
+                };
+
+            };
+        
+
+
+            // El push solo lo vamos a hacer si la variable "igual" es falsa. Si es verdadera es que el nombre ya está
+            // y si el nombre ya está no lo ponemos hacemos push en la lista.
+
+        if (igual==false){
+            contactos.push(contacto);
+            limpiar();
+
+        };
+        console.log(contactos)
+
+        }
+
+
+    };
+
+    function limpiar(){
+        document.getElementById("nombre").value="";
+        document.getElementById("telefono").value="";
+        document.getElementById("correo").value="";
+        document.getElementById("nombre").focus();
+        
+
+    }
+
+    function mostrar(){
+
+        let html="<tr><th>NOMBRE</th> <th>TELEFONO</th> <th>CORREO</th> <th>ELIMINAR</th>";
+
+
+        for(let i=0;i<contactos.length;i++){
+
+                html=html+`<tr><td>${contactos[i].nombre}</td><td>${contactos[i].telefono}</td><td>${contactos[i].correo}</td><td><a onclick='borrar(${i});'><img src='papelera.png' height='20px' width='20px'></a></td></tr>`;
+
+            }
+
+            document.getElementById("tablaContactos").innerHTML=html;
+
+        }    
+
+
+
+    function borrar(pos){
+        //splice borra el nombre que está en la posicion a, hasta b (nombre.splice(a,b))
+        contactos.splice(pos,1);
+        mostrar();
+
+
+    }
+
+
+    </script>
+    
+</body>
+</html>
