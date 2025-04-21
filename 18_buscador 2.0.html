@@ -13,6 +13,9 @@
 
     -->
 
+    
+
+
     <div id="insertar">
 
         INSERTA TUS PÁGINAS<br><br>
@@ -25,107 +28,63 @@
     <hr>
 
     AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
-    ESTA ES UNA LISTA DE LAS TEMÁTICAS DISPONIBLES.<br><br>
+    ELIGE UNA TEMÁTICA DEL DESPLEGABLE
     
-    <div id="listaTematicas">
 
-        
-
-        </div>
-
-
-    TEMÁTICA: <input type="text" id="tematica">
     <br><br>
-    <button id="buscar" onclick="buscar();">BUSCAR</button>
+    <select name="tematicas" id="selTematicas">
+        <option value="deportes">Deportes</option>
+        <option value="libros">Libros</option>
+        <option value="juegos">Juegos</option>
+        <option value="cocina">Cocina</option>
+    </select>
 
-    <div id="resultados"><!-- Aquí le ponemos los resultados -->
+    <button id="buscar" onclick="select();">BUSCAR</button>
 
-    </div>
+    <table id="resultados"><!-- Aquí le ponemos los resultados -->
+
+
+    </table>
 
     <script>
 
-//hemos definidoo una función pero tenemos que inventarnos los datos de las temáticas
-//Así que nos vamos a inventar los datos que vamos a poner
-
-//Haremos un array.
-
-//INTENTA HACERLO EN JSON
-
-let datos=[
+    let datos=[
         {"tematica":"deportes","direccion":"http://www.marca.es/"},
         {"tematica":"libros","direccion":"http://www.puntolibro.es/"},
         {"tematica":"deportes","direccion":"http://www.todofutbol.com/"},
         {"tematica":"libros","direccion":"http://www.fnac.es/"},
         {"tematica":"cocina","direccion":"http://www.fogones.es/"},
         {"tematica":"juegos","direccion":"http://www.game.es/"}
-        ]; 
+        ];
 
+    let tematicas=new Set();
+    let tematicasSelect=`
+        <option value="deportes">Deportes</option><br>
+        <option value="libros">Libros</option><br>
+        <option value="juegos">Juegos</option><br>
+        <option value="cocina">Cocina</option><br>
+        `;
 
-
-        function select()
-
-
-    function buscar(){
-
-        let direcciones=[];
-        let comparar = document.getElementById("tematica").value;
-        direcciones.push(comparar);
-
-
-
-        for(i of datos){
-
-        if (i.tematica==comparar) direcciones.push(i.direccion);
-            console.log(direcciones);
-
-        let html=""
-
-        for (d of direcciones){
-
-            html+= d +"<br>"
-        }
-
-        document.getElementById("resultados").innerHTML="<br>"+html
-        console.log(direcciones)
-
-        };
+    for (i of datos){
+        tematicas.add(i.tematica);
     };
+    console.log(tematicas);
+
     
-    // IMPLEMENTAR LISTA DE TEMATICAS
-    // posiblemente con array de deportes y paginas en vez de solo datos?
-    //REVISAR EL QUE NO REPITA DENTRO DEL ARRAY
 
-    // intentar ver si no me ducplica las temáticas. con función
+    function select(){ 
+        let opcion = document.getElementById("selTematicas").value;
+        let paginas="<tr><th>TEMÁTICA SELECCIONADA</th><th>PAGINAS</th></tr>";
+                for (i of datos){
+                    if(opcion==i.tematica){
 
-        let listado=[datos[0].tematica];
+                    paginas+=`<tr><td>${i.tematica}</td><td>${i.direccion}</td><th>`;
+                    };
+                };
 
-    function listaPaginas(){
-        let c=false;
-        for (i of datos){
-            let b=i.tematica
-            console.log(b);
+        document.getElementById("resultados").innerHTML=paginas;
         };
-
-        for(i of listado){ //hacemos un i para el primero y luego otro recorrido del array
-            for (j of listado){ //vuelve a recorrer para j el array
-
-            }
-            let contador=0;
-            if (contador<1) 
-        listado.find(function repe(b){b==listado[j]}); //metodo find erroneo
-        console.log(listado.find(function repe(b){b==listado[j]}));
-
-        };
-
-            console.log(listado);
-
-
-            //if(a.find(i.tematica => i.tematica==i)) a.push(i.tematica);
-            //console.log(a);
-            
-        };
-
-
+    
 
     function añadirPagina(){
         let a={tematica:"", direccion:""};
@@ -134,10 +93,21 @@ let datos=[
         a.direccion=document.getElementById("pagina").value;
         console.log(a);
         datos.push(a);
-        console.log(datos);
+        console.log(tematicas);
 
-        listaPaginas();
-                
+        comprobarSelect(a.tematica);
+
+    };
+
+    function comprobarSelect(a){
+        console.log(tematicas.has(a));
+        if(tematicas.has(a)==false){
+            tematicas.add(a);
+            tematicasSelect+=`<option value="${a}">${a}</option><br>`;
+        };
+        console.log(tematicasSelect);
+        document.getElementById("selTematicas").innerHTML=tematicasSelect;
+
     };
 
 
