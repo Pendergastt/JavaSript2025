@@ -4,44 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador</title>
+    <style>
+        h1{
+            background-color:rgb(231, 231, 231);
+            border: solid;
+            padding: 1%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h3{
+            background-color: rgb(231, 231, 231);
+            padding: 1%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .caja{
+            border-color: black;
+            border-radius: 3px;
+            border: solid 2px;
+            padding-left: 5px;
+            margin-left: 3px;
+        }
+
+
+
+    </style>
 </head>
 <body>
-    <!-- 
-    
-    NOS VA A APARECER UN COMBOBOX (DESPLEGABLE) CON EL CONJUNTO DE TEMÁTICAS QUE TENEMOS
-    Y QUE NOS DEVUELVA LAS 
-
-    -->
-
-    
-
 
     <div id="insertar">
 
-        INSERTA TUS PÁGINAS<br><br>
-        TIPO<input type="text" id="tipo" placeholder="solo un tipo"><br><br>
-        PAGINAS<input type="text" id="pagina" placeholder="separadas por comas"><br>
-        <br>
-        <button id="añadirPagina" onclick="añadirPagina();">AÑADIR PAGINA</button>
-
+        <h1>Bienvenido a tu repositorio de páginas web</h1>
+        <h3>Tenemos ya unas páginas en el repositorio pero si quieres puedes añadir las tuyas.</h3><br>
     </div>
-    <hr>
+    <div>
+    <table>
+        <tr><td><b>TIPO</b></td><td><input type="text" id="tipo" class="caja" placeholder="solo un tipo"></td></tr>
+        <tr><td><b>PAGINAS</b></td><td><input type="text" id="pagina" class="caja" placeholder="separadas por comas"></td></tr>
+        <tr><td></td><td><button id="añadirPagina" style="margin-left: 3px;" onclick="añadirPagina();">AÑADIR PAGINA</button></td></tr>
+        
+    </table>
+    </div>
 
-    AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
-    ELIGE UNA TEMÁTICA DEL DESPLEGABLE
-    
+    <hr style="border-color: brown;">
 
+    <h3>AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
+    ELIGE UNA TEMÁTICA DEL DESPLEGABLE</h3>
     <br><br>
     <select name="tematicas" id="selTematicas">
-        <option value="deportes">Deportes</option>
-        <option value="libros">Libros</option>
-        <option value="juegos">Juegos</option>
-        <option value="cocina">Cocina</option>
+    <!-- Aquí no hay nada ahora mismo porque lo introducimos con una funcion más abajo -->
     </select>
+   
 
     <button id="buscar" onclick="select();">BUSCAR</button>
 
-    <table id="resultados"><!-- Aquí le ponemos los resultados -->
+    <table id="resultados" class="caja"><!-- Aquí le ponemos los resultados -->
 
 
     </table>
@@ -64,6 +83,9 @@
         <option value="juegos">Juegos</option><br>
         <option value="cocina">Cocina</option><br>
         `;
+    
+    document.getElementById("selTematicas").innerHTML=tematicasSelect;
+
 
     for (i of datos){
         tematicas.add(i.tematica);
@@ -71,34 +93,50 @@
     console.log(tematicas);
 
     
-
+// Coge el dato del select (select que hemos creado con funcion)
+// crea un texto que mostrar (tabla con temática y páginas)
+// Recorre el array y busca las páginas cuya temática coincidan con la temática y las añade al texto
     function select(){ 
         let opcion = document.getElementById("selTematicas").value;
-        let paginas="<tr><th>TEMÁTICA SELECCIONADA</th><th>PAGINAS</th></tr>";
+        let paginas=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br>
+                    <tr><td>${opcion}</td><td></td><tr>`;
                 for (i of datos){
                     if(opcion==i.tematica){
 
-                    paginas+=`<tr><td>${i.tematica}</td><td>${i.direccion}</td><th>`;
+                    paginas+=`<tr><td></td><td>${i.direccion}</td><th>`;
                     };
                 };
 
         document.getElementById("resultados").innerHTML=paginas;
         };
     
-
+// Crea un JSON "a" con el tipo y la página que añade a datos y llama a la funcion "comprobarSelect();"
     function añadirPagina(){
         let a={tematica:"", direccion:""};
-        console.log(a);
         a.tematica=document.getElementById("tipo").value;
         a.direccion=document.getElementById("pagina").value;
-        console.log(a);
+        
+/*        
+        ****** PREGUNTAR POR QUÉ SE MODIFICAN TODOS LOS "a" QUE METO SI SEPARO POR COMAS *******
+
+        let paginasSeparadas= (document.getElementById("pagina").value).split(",");
+        console.log(paginasSeparadas);
+        for (pagina of paginasSeparadas){
+            let a={tematica:"", direccion:""};
+            a.tematica=tipo;
+            a.direccion=pagina;
+            console.log(a);
+            datos.push(a); //CAMBIA TODO EL TIEMPO EL a AL ÚLTIMO
+        }
+ */ 
         datos.push(a);
         console.log(tematicas);
+        console.log(datos);
 
         comprobarSelect(a.tematica);
 
     };
-
+//  Comprueba si el tipo de página ya está en el Set. Si no, añade una opcion al select
     function comprobarSelect(a){
         console.log(tematicas.has(a));
         if(tematicas.has(a)==false){
