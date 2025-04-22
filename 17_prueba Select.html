@@ -5,14 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body onload="cargarCiudades();">
 <select id="ciudades">
-    <option value="25">MADRID</option> //EL value es lo que te devuelve al seleccionar MADRID. que puede ser una página o un valor"
-    <option>TOLEDO</option>
-    <option>BARCELONA</option>
-    <option>CADIZ</option>
-    <option>VALENCIA</option>
-    <option>SEGOVIA</option>
 
 
 </select>
@@ -20,9 +14,25 @@
 
 
     <script>
+        let ciudades=["Cáceres","Ávila","Córdoba","Madrid","Barcelona","Córdoba","Córdoba"];
+        let prefijosCiudades=[]
+
     function ver(){
 
         console.log(document.getElementById("ciudades").value);
+
+    };
+
+    function cargarCiudades(){
+        //hemos creado un conjunto a partir de un array para eliminar duplicados.
+        let conjuntoCiudades=new Set(ciudades)
+        let html="";
+        for (c of conjuntoCiudades){
+            html+=`<option value="${c}">${c}</option>`;
+        };
+
+        document.getElementById("ciudades").innerHTML=html;
+
 
     }
 

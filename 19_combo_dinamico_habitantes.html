@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="cargarCiudades();">
+<select id="ciudades">
+
+
+</select>
+<div id="mostrarPoblacion"></div>
+<button onclick="ver();">VER SELECCIONADO</button>
+
+
+    <script>
+
+        let ciudades=[{ciudad:"Cáceres",poblacion:120000},
+                      {ciudad:"Zaragoza",poblacion:680000},
+                      {ciudad:"Ávila",poblacion:57000},
+                      {ciudad:"Córdoba",poblacion:720000}];
+
+    function ver(){
+
+        let poblacion=document.getElementById("ciudades").value;
+        let indiceCiudad=ciudades.findIndex(document.getElementById("ciudades").value);
+        console.log(indiceCiudad);
+        // método selectElement.
+        let ciudadId=document.getElementById("ciudades").textContent;
+        document.getElementById("mostrarPoblacion").innerHTML=`${poblacion}`;
+
+        console.log(document.getElementById("ciudades").value);
+
+    };
+
+    function cargarCiudades(){
+        //hemos creado un conjunto a partir de un array para eliminar duplicados.
+        let conjuntoCiudades=new Set(ciudades)
+        let html="";
+        for (ciudad of ciudades){
+            
+            html+=`<option value="${ciudad.poblacion}">${ciudad.ciudad}</option>`;
+            // <option value=12000> caceres </option>
+        };
+
+        document.getElementById("ciudades").innerHTML=html;
+
+    }
+
+
+    </script>
+</body>
+</html>
