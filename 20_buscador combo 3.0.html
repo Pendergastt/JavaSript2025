@@ -53,18 +53,15 @@
     <h3>AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
     ELIGE UNA TEMÁTICA DEL DESPLEGABLE</h3>
     <br><br>
-    <div display="flex"><select name="tematicas" id="selTematicas" onchange="select();"></div>
-    <!-- Aquí no hay nada ahora mismo porque lo introducimos con una funcion más abajo -->
-    </select>
-   
-
-    <!-- <button id="buscar" onclick="select();">BUSCAR</button> -->
-
-    <table id="resultados" class="caja"><!-- Aquí le ponemos los resultados -->
-
-
-    </table>
-    <div id="todos"></div>
+    <div display="flex">
+    
+        <select name="tematicas" id="selTematicas" onchange="select();"></div>
+        <!-- Aquí no hay nada ahora mismo porque lo introducimos con una funcion más abajo -->
+        </select>
+    
+        <table id="resultados" class="caja">
+        <!-- Aquí le ponemos los resultados -->
+        </table>
 
     <script>
 
@@ -90,46 +87,42 @@
     document.getElementById("selTematicas").innerHTML=tematicasSelect;
     console.log(tematicasSelect);
 
-
+//  Creamos el conjunto de temáticas para no repetirlas
     for (i of datos){
         tematicas.add(i.tematica);
     };
-    console.log(tematicas);
 
     
-// Coge el dato del select (select que hemos creado con funcion)
-// crea un texto que mostrar (tabla con temática y páginas)
-// Recorre el array y busca las páginas cuya temática coincidan con la temática y las añade al texto
+
+    let paginas="";
+
+//  Coge el dato del select (select que hemos creado con funcion)
+//  crea un texto que mostrar (tabla con temática y páginas)
+//  llama a la funcion lista que genera la lista que se va a mostrar
+
     function select(){ 
         let opcion = document.getElementById("selTematicas").value;
-        let paginas=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br>
-                    <tr><td>${opcion}</td><td>/////////////////////////////////////////////</td><tr>`;
-
+        
         if (opcion=="todos"){
-            for (temat of tematicas){
-    /*            for (i of datos){
-                    if(temat==i.tematica){
-////////////////////////////MIRAR SI PUEDO PONERLO COMO YO LO TENÍA. MIRAR QUE LLAME A OTRA FUNCION///////////////////////////////////
-                    paginas+=`<tr><td>${i.tematica}</td><td>${i.direccion}</td><th>`;
-                    };
-                };
+            for (temat of tematicas){ //recorre conjunto tematicas
             
-     */             console.log(temat);
-                        lista(temat);
+                      console.log(temat);
+                    paginas+=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br> 
+                        <tr><td>${temat}</td><td>/////////////////////////////////////////////</td><tr>`; //pone la cabecera y referenciamos TEMAT que es lo que va a mirar
+                        lista(temat); //ejecuta lista con argumento temat (todos),
                     }
-                }else{
+            }else{
+                    paginas+=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br> 
+                            <tr><td>${opcion}</td><td>/////////////////////////////////////////////</td><tr>`;
+                    lista(opcion);
 
-                for (i of datos){
-                    if(opcion==i.tematica){
-
-                    paginas+=`<tr><td></td><td>${i.direccion}</td><th>`;
-                    };
-                };
             };
             document.getElementById("resultados").innerHTML=paginas;
+            paginas="";
         };
-    
-// Crea un JSON "a" con el tipo y la página que añade a datos y llama a la funcion "comprobarSelect();"
+
+
+//  Crea un JSON "a" con el tipo y la página que añade a datos y llama a la funcion "comprobarSelect();"
     function añadirPagina(){
 
         let tipo=document.getElementById("tipo").value;
@@ -148,9 +141,9 @@
                 a.tematica=tipo;
                 a.direccion=pagina;
                 console.log(a);
-                datos.push(a); //CAMBIA TODO EL TIEMPO EL a AL ÚLTIMO
-
+                datos.push(a);
             };
+
             comprobarSelect(tipo);
             document.getElementById("tipo").value="";
             document.getElementById("pagina").value="";
@@ -158,11 +151,6 @@
         };   
 
     };
-
-
-        console.log(tematicas);
-        console.log(datos);
-
 
 //  Comprueba si el tipo de página ya está en el Set. Si no, añade una opcion al select
     function comprobarSelect(a){
@@ -175,25 +163,24 @@
         document.getElementById("selTematicas").innerHTML=tematicasSelect;
 
     };
+    
 
-    function lista(a){
-        let tematica = a;
-        let paginas=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br>
-                    <tr><td>${tematica}</td><td>/////////////////////////////////////////////</td><tr>`;
+    function lista(a){ //toma un argumento ()
+
             for (i of datos){
-                if(tematica==i.tematica){
-
+                if(a==i.tematica){
+                    console.log(`i.tematica es ${i.tematica}`);
+                    console.log(`a es ${a}`);
+                    console.log(`i.direccion es ${i.direccion}`);
                  paginas+=`<tr><td></td><td>${i.direccion}</td><th>`;
+                    console.log(paginas)
                 };
-                //REVISAR QUE CASI ESTÁ BIEN
-                document.getElementById("todos").innerHTML=paginas;
+                document.getElementById("resultados").innerHTML=paginas;
             };
 
 
     }
 
-    //funcion todos
-    //for del conjunto que cada vuelta llame a la funcion select
 
     </script>
 
