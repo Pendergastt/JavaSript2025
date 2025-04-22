@@ -1,0 +1,23 @@
+FUNCIONES Y MÉTODOS QUE RECIBEN COMO PARÁMETRO OTRAS FUNCIONES.
+
+imaginemos que tenemos un boton pulsar y una funcion(); que es console.log("hola");
+
+para llamar a la funcion lo que hacemos en el boron es escribirle onclick="funcion();" de manera habitual
+
+
+también tenemos otras maneras de asociar funciones con eventos:
+
+<button id="boton">pulsar</button>
+
+si no quieres llamarla desde el html tenemos que hacer lo siguiente
+
+let objBoton=document.getelementbyid("boton"); //de esta manera llamamos AL BOTON EN SÍ
+
+objBoton.addEventListener("click",funcion); (es referencia a la función, no llamada)
+esto es un método que añadimos algo que está pendiente de que cuando pase lo primero "click", entonces hace referencia a la funcion, nombrándola.
+
+
+la manera profesional sería
+
+objBoton.addEventListener("click",function(){LO QUE HACE LA FUNCION})
+"click" es la acción que va a detonar la función en sí.

@@ -107,14 +107,17 @@
 
         if (opcion=="todos"){
             for (temat of tematicas){
-                for (i of datos){
+    /*            for (i of datos){
                     if(temat==i.tematica){
 ////////////////////////////MIRAR SI PUEDO PONERLO COMO YO LO TENÍA. MIRAR QUE LLAME A OTRA FUNCION///////////////////////////////////
                     paginas+=`<tr><td>${i.tematica}</td><td>${i.direccion}</td><th>`;
                     };
                 };
-            }
-        }else{
+            
+     */             console.log(temat);
+                        lista(temat);
+                    }
+                }else{
 
                 for (i of datos){
                     if(opcion==i.tematica){
@@ -172,6 +175,22 @@
         document.getElementById("selTematicas").innerHTML=tematicasSelect;
 
     };
+
+    function lista(a){
+        let tematica = a;
+        let paginas=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br>
+                    <tr><td>${tematica}</td><td>/////////////////////////////////////////////</td><tr>`;
+            for (i of datos){
+                if(tematica==i.tematica){
+
+                 paginas+=`<tr><td></td><td>${i.direccion}</td><th>`;
+                };
+                //REVISAR QUE CASI ESTÁ BIEN
+                document.getElementById("todos").innerHTML=paginas;
+            };
+
+
+    }
 
     //funcion todos
     //for del conjunto que cada vuelta llame a la funcion select
