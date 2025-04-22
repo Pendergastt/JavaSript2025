@@ -4,7 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora mejorada</title>
-</head>
+
+    <style>
+        .tecla {
+            border: black solid 2px;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    
+    
+        #tecladoNumeros { 
+            display: grid;
+            /* Creo que esto es repetir 3, 1r es una fila? */
+            grid-template-columns: repeat(3, 4fr);
+            gap: 10px;
+            justify-items: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+    
+        #numero0 {
+            grid-column: 2; /* Centra el número 0 en la segunda columna */
+        }
+    </style></head>
 <body>
     <!-- Input hace que se añadan cosas en varias cajitas?
     poniendo ID lo que vamos a darle es una "etiqueta" para que luego
@@ -12,12 +36,23 @@
     -->
     <h2>Introduce un número:</h2><br><input id="num1" type="number"><br>
     <h2>Introduce otro:</h2><br><input id="num2" type="number"><br><br>
-    <button onclick="sumarNumeros();">SUMAR</button><button onclick="multiplicarNumeros();">MULTIPLICAR</button>
+    <button id="botonSumar">SUMAR</button><button id="botonMultiplicar">MULTIPLICAR</button>
     <br><br>
-    <div input id="result">
+    <div input id="result"></div>
 
+    <div id="pantalla"></div>
 
-
+    <div id="tecladoNumeros">
+        <div id="numero1" class="tecla">1</div>
+        <div id="numero2" class="tecla">2</div>
+        <div id="numero3" class="tecla">3</div>
+        <div id="numero4" class="tecla">4</div>
+        <div id="numero5" class="tecla">5</div>
+        <div id="numero6" class="tecla">6</div>
+        <div id="numero7" class="tecla">7</div>
+        <div id="numero8" class="tecla">8</div>
+        <div id="numero9" class="tecla">9</div>
+        <div id="numero0" class="tecla">0</div>
     </div>
 
 
@@ -27,11 +62,27 @@
 
 
 <script>
-    /* vamos a usar el getelement by id que lo que hace es que
+    //boton sumar
+    document.getElementById("botonSumar").addEventListener("click",function(){
+        let n1= document.getElementById("num1");
+        let n2= document.getElementById("num2");
+        let suma=parseInt(n1.value)+parseInt(n2.value);
+        document.getElementById("result").innerHTML=suma;
+
+    });
+
+    //boton Multiplicar
+    document.getElementById("botonMultiplicar").addEventListener("click",function(){
+        let n1= document.getElementById("num1");
+        let n2= document.getElementById("num2");
+        let multiplicacion=parseInt(n1.value)*parseInt(n2.value);
+        document.getElementById("result").innerHTML=multiplicacion;
+
+    });
 
 
-    */
-function sumarNumeros(){
+
+/*function sumarNumeros(){
     let n1= document.getElementById("num1");
     let n2= document.getElementById("num2");
 
@@ -41,15 +92,9 @@ function sumarNumeros(){
     let suma=parseInt(n1.value) + parseInt(n2.value)
     document.getElementById("result").innerHTML=`<h3>La suma es ${suma}<h3>`
     alert(`El valor de la suma es ${suma}`);
-
-
-
 }
+*/
 
-function multiplicarNumeros(){
-
-
-}
 
 
 
