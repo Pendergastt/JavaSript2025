@@ -1,0 +1,16 @@
+BUSQUEDAS, COMPROBACIONES Y FLITRADO DE ARRAY
+
+Gracias a unos métodos que tiene el array podemos hacer estas tareas dado que se les pueden dar funciones.
+
+PRIMERO DE LOS métodos
+
+Se realizan estas tareas utilizando métodos de un array a los que se les debe de proporcionar una función.
+-- SOME(funcion_boolean)
+    A este método hay que darle una funcion boolean.
+    Indica si ALGUNO de los elementos del array cumple la función.
+
+-- FILTER(funcion boolean)
+    devuelve un NUEVO ARRAY con los elementos QUE CUMPLEN con la función.
+
+-- FOREACH(funcion_procesal)
+    aplica la función a cada elemento del array

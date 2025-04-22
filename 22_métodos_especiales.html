@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>metodos especiales array</title>
+</head>
+<body>
+    
+
+    <script>
+
+        let numeros=[2,7,3,-4,8,-1,-15];
+        //que la consola muestre si hay algún número negativo
+/*        let indicador=false
+        
+        for (i of numeros){
+            if (i<0) indicador=true
+        }indicador
+
+        
+*/
+//CON SOME
+        let indicador = numeros.some(function(i){return i<0}) //en este caso tiene que tener un argumento para que pueda trabajar
+        // Se traduciría como: algunos valores del array números cumplen la función booleana de que son menores que 0?
+        // Si alguno es menor, te devuelve un true, con lo que el some es true también.
+
+        if (indicador==true) console.log("Hay negativos");
+        else (console.log("No hay negativos"))
+
+        //imprime los números pares
+/*        let pares=[];
+        for (numero of numeros){
+            if (numero%2==0) pares.push(numero);
+        }
+*/       
+//CON FILTER
+        let pares = numeros.filter(function(n){return n%2==0}); //tienes que poner RETURN para que te devuelva algo. y con ese return comprueba la función
+        let impares=numeros.filter(function(n){return n%2!=0}); //se pone return para ver qué es lo que devuelve
+        console.log(pares);
+        console.log(impares);
+
+//CON FOREACH
+        //imprimir cada uno de los elementos del array
+        numeros.forEach(function(n){console.log(n)})
+        numeros.forEach(function(n){return (n+=1)});
+        console.log(numeros);
+
+        // IMPRIMIR LOS NEGATIVOS
+        // sin usar for, if, variables adicionales
+        numeros.filter(function(n){return n<0}).forEach(function(n){console.log(n)}); //devuelve los números por separado
+        console.log(numeros.filter(function(n){return n<0})); //devuelve array
+
+
+
+
+
+    </script>
+</body>
+</html>
