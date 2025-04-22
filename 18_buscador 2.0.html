@@ -112,13 +112,13 @@
     
 // Crea un JSON "a" con el tipo y la página que añade a datos y llama a la funcion "comprobarSelect();"
     function añadirPagina(){
-        let a={tematica:"", direccion:""};
-        a.tematica=document.getElementById("tipo").value;
-        a.direccion=document.getElementById("pagina").value;
-        
-/*        
-        ****** PREGUNTAR POR QUÉ SE MODIFICAN TODOS LOS "a" QUE METO SI SEPARO POR COMAS *******
 
+        //let a={tematica:"", direccion:""};
+        //a.tematica=document.getElementById("tipo").value;
+        //a.direccion=document.getElementById("pagina").value;
+        
+        //****** PREGUNTAR POR QUÉ SE MODIFICAN TODOS LOS "a" QUE METO SI SEPARO POR COMAS *******
+        let tipo=document.getElementById("tipo").value;
         let paginasSeparadas= (document.getElementById("pagina").value).split(",");
         console.log(paginasSeparadas);
         for (pagina of paginasSeparadas){
@@ -128,12 +128,12 @@
             console.log(a);
             datos.push(a); //CAMBIA TODO EL TIEMPO EL a AL ÚLTIMO
         }
- */ 
-        datos.push(a);
+
+        //datos.push(a);
         console.log(tematicas);
         console.log(datos);
 
-        comprobarSelect(a.tematica);
+        comprobarSelect(tipo);
 
     };
 //  Comprueba si el tipo de página ya está en el Set. Si no, añade una opcion al select
