@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        th{
+            background-color: rgb(230, 178, 38);
+           color: rgb(161, 44, 50);
+           width: fit-content;
+           padding: 5px;
+        }
+        td{
+        background-color: rgb(255, 247, 236);
+
+        }
+        
+        .euros{
+            text-align: right;
+        }
+
+    </style>
 </head>
 <body>
+
+    <table class="lolo">
+        
+        <div >NUMERO DE ARTÍCULOS
+            <div id="articulos"></div>
+        </div>
+        <div >DINERO A PAGAR
+            <div id="dineroPagar"></div>
+        </div>
+
+    </table>
 
     <table id="tablaCatalogo">
     </table>
@@ -25,14 +53,75 @@
             {producto:"leche",categoria:"alimentación",precio:2}
         ];
         
-        listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
-        catalogo.forEach(i=>listaCatalogo+=`<tr><th>${i.producto}</th><th>${i.categoria}<th>${i.precio}€<th><button name="agregar" id="${i}" onclick="agregar()">AÑADIR</button></th></tr>`)
+        listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA</th><th>PRECIO</th></tr>";
+        catalogo.forEach(i=>{
+            listaCatalogo+=`<tr><td>${i.producto}</td><td>${i.categoria}</td><td class="euros">${i.precio} €</td><td></td><td></td><td><button name="agregar" title="añadir ${i.producto} al carrito" onclick="agregar('${i.producto}')">AÑADIR</button></td></tr>`}
+        )
         document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
 
-        let carrito=[];
+        let carrito=[0];
+        let totalCarrito=[0];
+        let articulos=0;
+        let dineroAPagar=0;
 
-    function agregar(){
-        getEle
+
+        listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
+        document.getElementById("tablaCarrito").innerHTML=listaCarrito;
+
+    // La funcion agregar(a) recoge el elemento del botón agregar y lo usa para filtrar el catalogo
+    function agregar(a){
+    //    console.log(a);
+        let agregado=catalogo.filter((n)=>a==n.producto);
+    //    console.log(agregado);
+        carrito.push(agregado[0]); //como es un array tenemos que especificar que queremos meter el objeto, no el array.
+        // croe que mejor no usar set porque no tiene indice y nos va a interesar para borrarlo
+        totalCarrito.push(agregado[0].precio);
+        articulos++
+        document.getElementById("articulos").innerHTML=articulos
+        console.log(carrito);
+
+// mirar si puedo hacerlo con un foreach.
+// hacemos for porque necesitamos el indice del array para poder decir qué borramos
+        for (i=0;i<carrito.length;i++){
+            console.log("esta es la i "+i);
+            console.log("este es el producto en la i "+carrito[i]);
+            listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio}€<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`;
+        }
+        document.getElementById("tablaCarrito").innerHTML=listaCarrito;
+        listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
+
+        totalDinero();
+        document.getElementById("dineroPagar").innerHTML=dineroAPagar
+
+    }
+// le damos el argumento a para que sepa el indice que borrar y luego volvemos a hacer for para tener los nuevos i.
+// map podría valer?
+    function borrar(a){
+        carrito.splice(a,1);
+        totalCarrito.splice(a,1);
+
+        for (i=0;i<carrito.length;i++){
+            
+            listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio}€<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`;
+
+        }
+        document.getElementById("tablaCarrito").innerHTML=listaCarrito;
+        listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
+        articulos--
+        document.getElementById("articulos").innerHTML=articulos
+
+        totalDinero();
+        document.getElementById("dineroPagar").innerHTML=dineroAPagar
+
+    }
+
+    function totalDinero(){
+        totalCarrito.forEach(elemento=>console.log(elemento));
+        //problema. el reduce da error cuando se quita el último
+        dineroAPagar=(totalCarrito.reduce((elemento,auxiliar)=>elemento+auxiliar));
+    }
+    function totalArticulos(){
+
 
     }
         
