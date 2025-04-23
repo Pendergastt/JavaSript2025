@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="tablaCatalogo">
+    </table>
+    <br><br>
+    <table id="tablaCarrito">
+    </table>    
+    
+    <script>
+        // ver si podemos hacerlo con addEvent llamando a boton
+        //let botonAgregar=document.getElementsByName("boton")
+        let catalogo=[
+            {producto:"pan",categoria:"alimentación",precio:1.2},
+            {producto:"guantes",categoria:"textil",precio:22.50},
+            {producto:"zapatos",categoria:"textil",precio:65.00},
+            {producto:"pantalla",categoria:"informática",precio:200},
+            {producto:"teclado",categoria:"informática",precio:35.8},
+            {producto:"leche",categoria:"alimentación",precio:2}
+        ];
+        
+        listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
+        catalogo.forEach(i=>listaCatalogo+=`<tr><th>${i.producto}</th><th>${i.categoria}<th>${i.precio}€<th><button name="agregar" id="${i}" onclick="agregar()">AÑADIR</button></th></tr>`)
+        document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
+
+        let carrito=[];
+
+    function agregar(){
+        getEle
+
+    }
+        
+
+    </script>
+</body>
+</html>
