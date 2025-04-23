@@ -20,7 +20,9 @@
 
         
 */
-//CON SOME
+
+
+//  CON SOME
         let indicador = numeros.some(function(i){return i<0}) //en este caso tiene que tener un argumento para que pueda trabajar
         // Se traduciría como: algunos valores del array números cumplen la función booleana de que son menores que 0?
         // Si alguno es menor, te devuelve un true, con lo que el some es true también.
@@ -33,14 +35,15 @@
         for (numero of numeros){
             if (numero%2==0) pares.push(numero);
         }
-*/       
-//CON FILTER
+*/
+
+//  CON FILTER
         let pares = numeros.filter(function(n){return n%2==0}); //tienes que poner RETURN para que te devuelva algo. y con ese return comprueba la función
         let impares=numeros.filter(function(n){return n%2!=0}); //se pone return para ver qué es lo que devuelve
         console.log(pares);
         console.log(impares);
 
-//CON FOREACH
+//  CON FOREACH (PARA CADA elemento del array)
         //imprimir cada uno de los elementos del array
         numeros.forEach(function(n){console.log(n)})
         numeros.forEach(function(n){return (n+=1)});
@@ -48,10 +51,12 @@
 
         // IMPRIMIR LOS NEGATIVOS
         // sin usar for, if, variables adicionales
-        numeros.filter(function(n){return n<0}).forEach(function(n){console.log(n)}); //devuelve los números por separado
-        console.log(numeros.filter(function(n){return n<0})); //devuelve array
+    //    numeros.filter(function(n){return n<0}).forEach(function(n){console.log(n)}); //hace el array y luego imprime los números por separado
+    //    console.log(numeros.filter(function(n){return n<0})); //imprime el array con los números solamente
+        console.log(`este es el array ${numeros.filter(n=>n<0)}`);
+        numeros.filter(n=>n<0).forEach(n=>console.log(n));
 
-
+//  
 
 
 

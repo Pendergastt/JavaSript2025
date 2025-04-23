@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador</title>
+    <style>
+        h1{
+            background-color:rgb(231, 231, 231);
+            border: solid;
+            padding: 1%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h3{
+            background-color: rgb(231, 231, 231);
+            padding: 1%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .caja{
+            border-color: black;
+            border-radius: 3px;
+            border: solid 2px;
+            padding-left: 5px;
+            margin-left: 3px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="insertar">
+
+        <h1>Bienvenido a tu repositorio de páginas web</h1>
+        <h3>Tenemos ya unas páginas en el repositorio pero si quieres puedes añadir las tuyas.</h3><br>
+    </div>
+    <div>
+    <table>
+        <tr><td><b>TIPO</b></td><td><input type="text" id="tipo" class="caja" placeholder="solo un tipo"></td></tr>
+        <tr><td><b>PAGINAS</b></td><td><input type="text" id="pagina" class="caja" placeholder="separadas por comas"></td></tr>
+        <tr><td></td><td><button id="añadirPagina" style="margin-left: 3px;">AÑADIR PAGINA</button></td></tr>
+        
+    </table>
+    </div>
+
+    <hr style="border-color: brown;">
+
+    <h3>AHORA TE PUEDO DAR UNA LISTA DE LAS PÁGINAS SI ME DICES LA TEMÁTICA<br>
+    ELIGE UNA TEMÁTICA DEL DESPLEGABLE</h3>
+    <br><br>
+    <div display="flex">
+    
+        <select name="tematicas" id="selTematicas"></div>
+        <!-- Aquí no hay nada ahora mismo porque lo introducimos con una funcion más abajo -->
+        </select>
+    
+        <table id="resultados" class="caja">
+        <!-- Aquí le ponemos los resultados -->
+        </table>
+
+    <script>
+
+        //// DOMContentLoaded
+
+    let datos=[
+        {"tematica":"deportes","direccion":"http://www.marca.es/"},
+        {"tematica":"libros","direccion":"http://www.puntolibro.es/"},
+        {"tematica":"deportes","direccion":"http://www.todofutbol.com/"},
+        {"tematica":"libros","direccion":"http://www.fnac.es/"},
+        {"tematica":"cocina","direccion":"http://www.fogones.es/"},
+        {"tematica":"juegos","direccion":"http://www.game.es/"}
+        ];
+
+    let tematicasSelect=`
+        <option value="" selected>Elige una temática</option><br>
+        <option value="todos">MOSTRAR TODAS</option><br>
+        <option value="deportes">Deportes</option><br>
+        <option value="libros">Libros</option><br>
+        <option value="juegos">Juegos</option><br>
+        <option value="cocina">Cocina</option><br>
+        `;
+    
+    console.log(tematicasSelect);
+
+//  Creamos el conjunto de temáticas para no repetirlas
+    //for (i of datos){
+    //    tematicas.add(i.tematica);
+    //};
+
+
+    //estoy creando un nuevo SET a partir de un MAP.
+    //MAP me va a crear un array con cada temática del array datos. Como ahí hay repetidos
+    // y aprovechando que cuando un array se convierte en set elimina los duplicados lo hacemos todo junto
+    // con lo que creamos un set temática temática que va a contener el array del que hemos sacado todos los datos.
+    let tematicas=new Set(datos.map(dato=>dato.tematica));
+
+    console.log(tematicas);
+
+    document.getElementById("selTematicas").addEventListener("change",select);
+
+
+    let paginas="";
+
+//  Coge el dato del select (select que hemos creado con funcion)
+//  crea un texto que mostrar (tabla con temática y páginas)
+//  llama a la funcion lista que genera la lista que se va a mostrar
+
+    function select(){ 
+        let opcion = document.getElementById("selTematicas").value;
+        
+        if (opcion=="todos"){
+
+            tematicas.map(tematica=>{
+                paginas+=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br> 
+                        <tr><td>${temat}</td><td>/////////////////////////////////////////////</td><tr>`; //pone la cabecera y referenciamos TEMAT que es lo que va a mirar
+                        lista(temat); //ejecuta lista con argumento temat (todos),                
+                    });
+
+ /*           for (temat of tematicas){ //recorre conjunto tematicas
+            
+                      console.log(temat);
+                    paginas+=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br> 
+                        <tr><td>${temat}</td><td>/////////////////////////////////////////////</td><tr>`; //pone la cabecera y referenciamos TEMAT que es lo que va a mirar
+                        lista(temat); //ejecuta lista con argumento temat (todos),
+                    } 
+ */                   
+            }else{
+                tematicas.filter(tematica=>tematica==option).forEach(tematica =>{
+                    paginas+=`<tr><th>TEMÁTICA</th><th>PAGINAS</th></tr><br> 
+                            <tr><td>${opcion}</td><td>/////////////////////////////////////////////</td><tr>`;
+                    lista(opcion);
+
+            });
+            document.getElementById("resultados").innerHTML=paginas;
+            paginas="";
+        };
+    };
+
+
+//  Crea un JSON "a" con el tipo y la página que añade a datos y llama a la funcion "comprobarSelect();"
+    function añadirPagina(){
+
+        let tipo=document.getElementById("tipo").value;
+        let paginasIntroducidas=document.getElementById("pagina").value;
+        console.log(paginasIntroducidas);
+        let paginasSeparadas= paginasIntroducidas.split(",");
+        console.log(paginasSeparadas);
+
+        if (tipo==""||tipo==null || paginasIntroducidas=="" || paginasIntroducidas==""){
+            alert("Rellena todos los campos, por favor");
+            
+            }else {
+            
+            for (pagina of paginasSeparadas){
+                let a={tematica:"", direccion:""};
+                a.tematica=tipo;
+                a.direccion=pagina;
+                console.log(a);
+                datos.push(a);
+            };
+
+            comprobarSelect(tipo);
+            document.getElementById("tipo").value="";
+            document.getElementById("pagina").value="";
+
+        };   
+
+    };
+
+//  Comprueba si el tipo de página ya está en el Set. Si no, añade una opcion al select
+    function comprobarSelect(a){
+        console.log(tematicas.has(a));
+        if(tematicas.has(a)==false){
+            tematicas.add(a);
+            tematicasSelect+=`<option value="${a}">${a}</option><br>`;
+        };
+        console.log(tematicasSelect);
+        document.getElementById("selTematicas").innerHTML=tematicasSelect;
+
+    };
+    
+
+    function lista(a){ //toma un argumento ()
+
+            for (i of datos){
+                if(a==i.tematica){
+                    console.log(`i.tematica es ${i.tematica}`);
+                    console.log(`a es ${a}`);
+                    console.log(`i.direccion es ${i.direccion}`);
+                 paginas+=`<tr><td></td><td>${i.direccion}</td><th>`;
+                    console.log(paginas)
+                };
+                document.getElementById("resultados").innerHTML=paginas;
+            };
+
+
+    }
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uso lambda</title>
+</head>
+<body>
+    <script>
+        let notas=[8.9,6.7,4.0,2.6,5.5,4.7,10.0,5.0];
+        //Mostrar los aprobados
+        notas.filter(n=>(n>=5)).forEach(n=>console.log(n));
+
+        console.log(`Los aprobados son ${notas.filter(n=>(n>=5))}`);
+
+        //vamos a ver la suma de todas las notas
+        let sumaNotas=notas.reduce((aux,n)=>aux+n);
+        console.log(sumaNotas);
+
+        console.log(`La nota media es ${sumaNotas/notas.length}`);
+
+
+        console.log(notas.reduce((aux,n)=>(aux+n))/notas.length);
+
+        //Vamos a bajar un punto a la nota de los alumnos con MAP
+
+        notas=notas.map(n=>n-1);
+        console.log(notas);
+
+        //quitar 1 punto de todas las notas con un for normal
+        let notasMenos=[];
+        for (n of notas){
+            notasMenos.push(n-1);
+        };
+
+        console.log("esto es notas menos "+notasMenos);
+
+/*      Esto no conviene porque es un bucle.
+
+        for (n of notas){
+            notas.unshift(n-1);
+        };
+        console.log("esto es notas nuevo pero sobre notas "+ notas);
+*/
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .reloj{
+
+            border: 2px solid red;
+            border-style: dotted;
+            padding: 10%;
+            font-size: 3em;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="reloj" class="reloj"></div>
+    
+    <script>
+        //contador 60 segundos
+        
+       
+
+        setInterval(     
+        ()=>{
+        let a = new Date();
+        let hora=a.getHours();
+        let minutos=a.getMinutes();
+        let segundos=+a.getSeconds();
+        if (hora<10) hora="0"+hora;
+        if (minutos<10) minutos="0"+minutos;
+        if (segundos<10) segundos="0"+segundos;
+
+        document.getElementById("reloj").innerHTML=`${hora}:${minutos}:${segundos}`;
+        }, 1000);
+
+
+
+    </script>
+</body>
+</html>
