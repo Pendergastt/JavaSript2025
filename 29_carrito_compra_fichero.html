@@ -23,7 +23,10 @@
 
     </style>
 </head>
-<body onload="cargaCatalogo()">
+<body>
+    <!-- el tipo file pone el boton de cargar archivo.
+     el atributo ACCEPT limita  -->
+    Seleccione lista de productos<input type="file" id="archivo" accept=".json">
     <table>
         
         <tr><th>NUMERO DE ARTÍCULOS</th></tr>
@@ -47,17 +50,30 @@
     <script>
         // ver si podemos hacerlo con addEvent llamando a boton
         //let botonAgregar=document.getElementsByName("boton")
-        let catalogo=[
-            {producto:"pan",categoria:"alimentación",precio:1.2},
-            {producto:"guantes",categoria:"textil",precio:22.50},
-            {producto:"zapatos",categoria:"textil",precio:65.00},
-            {producto:"pantalla",categoria:"informática",precio:200},
-            {producto:"teclado",categoria:"informática",precio:35.8},
-            {producto:"leche",categoria:"alimentación",precio:2}
-        ];
+        let catalogo=[];
         
+        //vamos a poner event como 
+        document.getElementById("archivo").addEventListener("change",(event)=>{
+        //recogemos el fichero seleccionado en el input. le ponemos un [0] para indicar que es
+        // el primer archivo. porque puede que haya más y los pone en distintas posiciones del array    
+            let fichero=event.target.files[0]; 
+            //creamos un objeto FileReader que es el encargado de leer datos de un fichero.
+            let lector=new FileReader();
+            //programamos los sucesos que se van a producir durante la lectura del documento.
+            lector.onload=(e)=>{
+                //volcamos el contenido del fichero en el array catalogo
+                catalogo=JSON.parse(e.target.result); //representa el contenido del fichero.
+                cargaCatalogo();
+            }
+            //respuesta en caso de error durante la lectura
+            lector.onerror=()=>console.log("Error en la lectura");
 
+            //leemos el contenido del fichero.
+            lector.readAsText(fichero);
 
+        });
+
+        
         let listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA</th><th>PRECIO</th></tr>";
         document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
 
@@ -143,10 +159,9 @@
     function cargaCatalogo(){
 
         let categoriaCatalogo = new Set();
-        document.getElementById("categoriaCatalogo").innerHTML+=`<option value="todos" selected>todos</option>`;
+        categoriaCatalogo.add("todos");
         catalogo.map(n=>categoriaCatalogo.add(n.categoria));
         categoriaCatalogo.forEach(n=>document.getElementById("categoriaCatalogo").innerHTML+=`<option>${n}</option>`);
-        categoriaCatalogo.add("todos");
 
         console.log(categoriaCatalogo);
         document.getElementById("categoriaCatalogo").focus();

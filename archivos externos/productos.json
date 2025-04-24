@@ -1,6 +1,7 @@
-{"producto":"pan","categoria":"alimentación","precio":1.2},
+[{"producto":"pan","categoria":"alimentación","precio":1.2},
 {"producto":"guantes","categoria":"textil","precio":22.50},
 {"producto":"zapatos","categoria":"textil","precio":65.00},
 {"producto":"pantalla","categoria":"informática","precio":200},
 {"producto":"teclado","categoria":"informática","precio":35.8},
-{"producto":"leche","categoria":"alimentación","precio":2},
+{"producto":"leche","categoria":"alimentación","precio":2}
+]
