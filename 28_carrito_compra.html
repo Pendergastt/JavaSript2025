@@ -107,7 +107,7 @@
 // hacemos for porque necesitamos el indice del array para poder decir qué borramos
 
 
-        carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio}€<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`)
+        carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio} €</td><td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`)
 
         document.getElementById("tablaCarrito").innerHTML=listaCarrito;
         listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
@@ -122,7 +122,7 @@
         carrito.splice(a,1); //splice para borrar un elemento del carrito
         totalCarrito.splice(a,1);
 
-        carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio}€<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`);
+        carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio} €<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`);
     
         document.getElementById("tablaCarrito").innerHTML=listaCarrito;
         listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
@@ -137,7 +137,7 @@
     function totalDinero(){ //hace la suma del total del carrito
 
         totalCarrito.forEach(elemento=>console.log(elemento));
-        dineroAPagar=(totalCarrito.reduce((elemento,auxiliar)=>elemento+auxiliar,0,));
+        dineroAPagar=(totalCarrito.reduce((elemento,auxiliar)=>elemento+auxiliar,0));
     }
     
     function cargaCatalogo(){
