@@ -1,6 +1,82 @@
-tengo que hacer una pagina que la primera sea un combo con la lista de continentes del mundo.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        tr{
+          background-color: beige;
+            
+
+        }
+
+    </style>
+</head>
+<body>
+    ELIGE UNA BASE DE DATOS <input type="file" id="baseDatosPaises">
+    <br><br>
+    <h1>BASE DE DATOS DE PAISES</h1>
+    <h3>Elige una región</h3>
+    <select id="regiones">
+        
+    </select>
+    <hr>
+    <h3>PAISES DE LA REGIÓN</h3>
+    <br>
+        <table>
+            <tr><th>PAÍS</th><th>CAPITAL</th><th>REGION</th><th>POBLACION</th><th>BANDERA</th></tr>
+            <tr><td>España</td><td>Madrid</td><td>EUROPA</td><td>460.000.000</td><td>imagen</td></tr>
+            <tr><td>España</td><td>Madrid</td><td>EUROPA</td><td>460.000.000</td><td>imagen</td></tr>
+            <tr><td>España</td><td>Madrid</td><td>EUROPA</td><td>460.000.000</td><td>imagen</td></tr>
+            <tr><td>España</td><td>Madrid</td><td>EUROPA</td><td>460.000.000</td><td>imagen</td></tr>
+
+        </table>
+
+    <div id="prueba">PRUEBA TEXTO</div>
+    <script>
+        let informacionPaises=[];
+        let listaRegiones=new Set();
+
+        document.getElementById("baseDatosPaises").addEventListener("change",(event)=>{
+            let fichero=event.target.files[0];//el fichero es el archivo en posición 0 de los que hemos cogido de baseDatosPaises
+            let lector=new FileReader();
+            
+                lector.onload=(fichero)=>{
+                    informacionPaises=JSON.parse(fichero.target.result);
+                    crearSelect();
+                    //console.log("esta es informacion paises "+informacionPaises);
+                };
+
+                lector.onerror=()=>alert("error en el documento");
+
+                lector.readAsText(fichero);
+
+        });
+        console.log(listaRegiones);
+
+
+            //configuramos el select dentro del evento cargar archivo
+    function crearSelect(){
+            let selectRegiones="";
+            informacionPaises.forEach((a)=>{listaRegiones.add(a.region);});
+            listaRegiones.forEach((region)=>{
+                selectRegiones+=`<option>${region}</option>`
+            });
+            document.getElementById("regiones").innerHTML=selectRegiones;
+        };
+
+    ////////// hacer un elementlistener para change de select. crear lista (todos incluida) ///////
+
+    </script>
+    
+</body>
+</html>
+
+<!--que hacer una pagina que la primera sea un combo con la lista de continentes del mundo.
 todo está en el json que nos han enviado
 
 elijo un continente y me sale toda la información del continente
 name, capital, region flag
-todo en una tabla con 4 columnas
+todo en una tabla con 4 columnas -->
+
