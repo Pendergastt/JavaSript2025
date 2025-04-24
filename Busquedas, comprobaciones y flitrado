@@ -14,3 +14,49 @@ Se realizan estas tareas utilizando métodos de un array a los que se les debe d
 
 -- FOREACH(funcion_procesal)
     aplica la función a cada elemento del array
+
+
+-- REDUCE(funcion_operacion)
+    reduce el array a UN ÚNICO valor.
+    Aplica la funcón a cada pareja de datos hasta dejar un único valor. (ejemplificar con suma y nota media)
+
+-- MAP(funcion_transformacion)
+    Transforma un array de datos en otro array diferente resultante de aplicar a cada dato la funcion.
+    (si tienes un array de 7 números generas otro array otros 7 números a los que se ha aplicado una operación)
+    (si tienes 7 textos puedes aplicar una operacion sobre los textos para saber si tienen una letra o cuantas letras tienen...)
+
+
+
+
+-- ***** FUNCION LAMBDA/FLECHA *****
+    Es una forma alternativa de hacer una función anónima. Es más corto, pero tenemos que entender muy bien la sintaxis
+    en una función normal escribiríamos lo siguiente, por ejemplo:
+        function(){
+            console.log("hello");
+        };
+
+    de manera LAMBDA sería:(quitamos "function" ponermos => );
+        (parámetros)=>console.log("hello");
+    si recibiera un parámetro para trabajar con él:
+        (n)=>console.log(n);
+        
+        function (){
+            return n>0;
+        };
+
+        en funcion flecha sería
+        (n)=> n>0;
+
+        puede haber funcinoes de flecha dentro de flecha.
+
+
+    TEMPORIZADORES
+
+
+Son funciones que tienen como objeto realizar funciones en tiempo concreto
+    setTimeout(funcion, tiempo)
+    pasa un TIEMPO (en milisegundos) y realiza la función que le digas
+
+    setInterval(funcion, tiempo)
+    cada x tiempo hace lo que le digas
+
