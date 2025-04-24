@@ -43,21 +43,37 @@
 
     <div id="prueba">PRUEBA TEXTO</div>
     <script>
+        // Creamos el array vacío que contendrá los datos del fichero
         let informacionPaises=[];
-        let listaRegiones=new Set();
 
+        // Creamos un set de vacío donde introducir las opcions del select
+        let listaRegiones=new Set();
+        
+        // Registramos evento: Cuando el input de archivo cambie (es decir, elijamos archivo)
+        // ocurre el "evento". 
         document.getElementById("baseDatosPaises").addEventListener("change",(event)=>{
-            let fichero=event.target.files[0];//el fichero es el archivo en posición 0 de los que hemos cogido de baseDatosPaises
+            // Event.target hace referencia a quién ha sido objeto de "change". En este caso ha sido el input de fichero
+            // con lo que le decimos que la variable fichero se corresponde con el file(por el tipo del input) de índice [0] (porque podría haber más
+            let fichero=event.target.files[0];
+
+            // Creamos un lector con un método ya en javascript al que tenemos que configurar con los siguientes 4 métodos:
             let lector=new FileReader();
-            
+                // Qué hace el lector cuando carga el archivo
                 lector.onload=(fichero)=>{
+                    // Con esta orden le decimos al lector que:
+                    // Cuando se cree, cargue la variable fichero(definida antes)
+                    // fichero.target.result es lo que le devuelve la lectura del fichero. En este caso un montón de objetos en una línea.
+                    // Así que le decimos que lo que entre en nuestro array "informaciónPaises", sea un JSON.parse()
                     informacionPaises=JSON.parse(fichero.target.result);
+
+                    //creamos el select a partir del archivo cargado, volcado a nuestro array con el que trabajar
                     crearSelect();
-                    //console.log("esta es informacion paises "+informacionPaises);
                 };
 
+                // qué hace cuando hay un error
                 lector.onerror=()=>alert("error en el documento");
 
+                // Cómo debe leer el archivo
                 lector.readAsText(fichero);
 
         });
@@ -79,7 +95,7 @@
         //evento para cuando seleccionamos la región en el select
     document.getElementById("regiones").addEventListener("change",crearLista);
     
-    
+        // Crea lista del select y la imprime
     function crearLista(){
         let listadoRegion="";
         let cabecera=`<tr><th>PAÍS</th><th>CAPITAL</th><th>POBLACION</th><th class="centrado">BANDERA</th></tr>`;
