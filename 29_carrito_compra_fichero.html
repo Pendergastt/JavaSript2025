@@ -57,7 +57,7 @@
         //recogemos el fichero seleccionado en el input. le ponemos un [0] para indicar que es
         // el primer archivo. porque puede que haya más y los pone en distintas posiciones del array    
             let fichero=event.target.files[0]; 
-            //creamos un objeto FileReader que es el encargado de leer datos de un fichero.
+            //creamos un objeto FileReader que es el encargado de leer datos de un fichero.Como resultado da un return de línea compleja;
             let lector=new FileReader();
             //programamos los sucesos que se van a producir durante la lectura del documento.
             lector.onload=(e)=>{
