@@ -23,7 +23,7 @@
 
     </style>
 </head>
-<body>
+<body onload="cargaCatalogo()">
     <table>
         
         <tr><th>NUMERO DE ARTÍCULOS</th></tr>
@@ -61,8 +61,6 @@
         let listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA</th><th>PRECIO</th></tr>";
         document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
 
-        document.getElementById("categoriaCatalogo").addEventListener("focus",select)
-        document.getElementById("categoriaCatalogo").addEventListener("change",select)
 
     function select(){
 
@@ -121,7 +119,7 @@
 // le damos el argumento a para que sepa el indice que borrar y luego volvemos a hacer for para tener los nuevos i.
 // map podría valer?
     function borrar(a){
-        carrito.splice(a,1);
+        carrito.splice(a,1); //splice para borrar un elemento del carrito
         totalCarrito.splice(a,1);
 
         carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio}€<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`);
@@ -136,7 +134,8 @@
 
     }
 
-    function totalDinero(){
+    function totalDinero(){ //hace la suma del total del carrito
+
         totalCarrito.forEach(elemento=>console.log(elemento));
         dineroAPagar=(totalCarrito.reduce((elemento,auxiliar)=>elemento+auxiliar,0,));
     }
@@ -144,18 +143,19 @@
     function cargaCatalogo(){
 
         let categoriaCatalogo = new Set();
+        document.getElementById("categoriaCatalogo").innerHTML+=`<option value="todos" selected>todos</option>`;
         catalogo.map(n=>categoriaCatalogo.add(n.categoria));
         categoriaCatalogo.forEach(n=>document.getElementById("categoriaCatalogo").innerHTML+=`<option>${n}</option>`);
         categoriaCatalogo.add("todos");
-        document.getElementById("categoriaCatalogo").innerHTML+=`<option value="todos" selected>todos</option>`
 
         console.log(categoriaCatalogo);
         document.getElementById("categoriaCatalogo").focus();
-
     }
-        
-    cargaCatalogo();
 
+    document.getElementById("categoriaCatalogo").addEventListener("focus",select)
+    document.getElementById("categoriaCatalogo").addEventListener("change",select)
+
+        
     </script>
 </body>
 </html>
