@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th{
+            background-color: rgb(230, 178, 38);
+           color: rgb(161, 44, 50);
+           width: fit-content;
+           padding: 5px;
+        }
+        td{
+        background-color: rgb(255, 247, 236);
+
+        }
+        
+        .mostrar{
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body onload="cargaCatalogo()">
+    <table>
+        
+        <tr><th>NUMERO DE ARTÍCULOS</th></tr>
+        <tr><td id="articulos"></td></tr>
+        <tr><th>DINERO A PAGAR</th></tr>
+        <tr><td id="dineroPagar" class="euros"></td></tr>
+    
+
+    </table>
+
+    <select id="categoriaCatalogo">
+
+    </select>
+
+    <table id="tablaCatalogo">
+    </table>
+    <br><br>
+    <table id="tablaCarrito">
+    </table>    
+    
+    <script>
+        // ver si podemos hacerlo con addEvent llamando a boton
+        //let botonAgregar=document.getElementsByName("boton")
+        let catalogo=[
+            {producto:"pan",categoria:"alimentación",precio:1.2},
+            {producto:"guantes",categoria:"textil",precio:22.50},
+            {producto:"zapatos",categoria:"textil",precio:65.00},
+            {producto:"pantalla",categoria:"informática",precio:200},
+            {producto:"teclado",categoria:"informática",precio:35.8},
+            {producto:"leche",categoria:"alimentación",precio:2}
+        ];
+        
+
+
+        let listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA</th><th>PRECIO</th></tr>";
+        document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
+
+
+    function select(){
+
+        let opcionCatalogo=document.getElementById("categoriaCatalogo").value;
+        if (opcionCatalogo=="todos"){
+            catalogo.forEach(i=>{
+                listaCatalogo+=`<tr><td>${i.producto}</td><td>${i.categoria}</td><td class="euros">${i.precio} €</td><td></td><td></td><td><button name="agregar" title="añadir ${i.producto} al carrito" onclick="agregar('${i.producto}')">AÑADIR</button></td></tr>`});
+                document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
+            listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA</th><th>PRECIO</th></tr>";
+
+
+        }else{catalogo.filter(n=>opcionCatalogo==n.categoria).forEach(i=>{
+            listaCatalogo+=`<tr><td>${i.producto}</td><td>${i.categoria}</td><td class="euros">${i.precio} €</td><td></td><td></td><td><button name="agregar" title="añadir ${i.producto} al carrito" onclick="agregar('${i.producto}')">AÑADIR</button></td></tr>`}
+        )
+        document.getElementById("tablaCatalogo").innerHTML=listaCatalogo;
+        listaCatalogo="<tr><th>PRODUCTO</th><th>CATEGORIA</th><th>PRECIO</th></tr>";
+        };
+    };
+
+
+        let carrito=[];
+        let totalCarrito=[];
+        let articulos=0;
+        let dineroAPagar=0;
+
+
+        listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th></th></tr>";
+        document.getElementById("tablaCarrito").innerHTML=listaCarrito;
+
+
+    // La funcion agregar(a) recoge el elemento del botón agregar y lo usa para filtrar el catalogo
+    function agregar(a){
+    //    console.log(a);
+        let agregado=catalogo.filter((n)=>a==n.producto);
+    //    console.log(agregado);
+        carrito.push(agregado[0]); //como es un array tenemos que especificar que queremos meter el objeto, no el array.
+        // croe que mejor no usar set porque no tiene indice y nos va a interesar para borrarlo
+        totalCarrito.push(agregado[0].precio);
+        articulos++
+        document.getElementById("articulos").innerHTML=articulos
+        console.log(carrito);
+
+// mirar si puedo hacerlo con un foreach.
+// hacemos for porque necesitamos el indice del array para poder decir qué borramos
+
+
+        carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio} €</td><td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`)
+
+        document.getElementById("tablaCarrito").innerHTML=listaCarrito;
+        listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
+
+        totalDinero();
+        document.getElementById("dineroPagar").innerHTML=dineroAPagar
+
+    }
+// le damos el argumento a para que sepa el indice que borrar y luego volvemos a hacer for para tener los nuevos i.
+// map podría valer?
+    function borrar(a){
+        carrito.splice(a,1); //splice para borrar un elemento del carrito
+        totalCarrito.splice(a,1);
+
+        carrito.forEach((elemento,i)=>listaCarrito+=`<tr><td id=${i}>${carrito[i].producto}</td><td>${carrito[i].categoria}</td><td>${carrito[i].precio} €<td><button name="borrar" onclick="borrar(${i})">BORRAR</button></td></tr>`);
+    
+        document.getElementById("tablaCarrito").innerHTML=listaCarrito;
+        listaCarrito="<tr><th>PRODUCTO</th><th>CATEGORIA<th>PRECIO<th>...</th></tr>";
+        articulos--
+        document.getElementById("articulos").innerHTML=articulos
+
+        totalDinero();
+        document.getElementById("dineroPagar").innerHTML=(dineroAPagar + "€")
+
+    }
+
+    function totalDinero(){ //hace la suma del total del carrito
+
+        totalCarrito.forEach(elemento=>console.log(elemento));
+        dineroAPagar=(totalCarrito.reduce((elemento,auxiliar)=>elemento+auxiliar,0));
+    }
+    
+    function cargaCatalogo(){
+
+        let categoriaCatalogo = new Set();
+        document.getElementById("categoriaCatalogo").innerHTML+=`<option value="todos" selected>todos</option>`;
+        catalogo.map(n=>categoriaCatalogo.add(n.categoria));
+        categoriaCatalogo.forEach(n=>document.getElementById("categoriaCatalogo").innerHTML+=`<option>${n}</option>`);
+        categoriaCatalogo.add("todos");
+
+        console.log(categoriaCatalogo);
+        document.getElementById("categoriaCatalogo").focus();
+    }
+
+    document.getElementById("categoriaCatalogo").addEventListener("focus",select)
+    document.getElementById("categoriaCatalogo").addEventListener("change",select)
+
+        
+    </script>
+</body>
+</html>
