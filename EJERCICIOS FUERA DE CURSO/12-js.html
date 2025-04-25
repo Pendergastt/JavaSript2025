@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+    <title>Document</title>
+</head>
+<style>
+    button{
+        background-color: red;
+    }
+
+</style>
+    PON TU NOMBRE DE USUARIO<input type="text" id="usuario"><br>
+    <br>
+    PON TU NOMBRE REAL<input type="text" id="nombre"><br>
+    <br>
+    PON TU CORREO ELECTRÓNICO<input type="text" id="correo"><br>
+    <br>
+
+    <button id="activar" class="button">MOSTRAR DATOS</button>
+
+
+    <script>
+        document.getElementById("activar").addEventListener("click",(event)=>{
+            let datosAlerta="";
+            let usuario=document.getElementById("usuario").value;
+            let nombre=document.getElementById("nombre").value;
+            let correo=document.getElementById("correo").value;
+
+            datosAlerta=`Tu usuario es ${usuario}.\nTu nombre es ${nombre}.\nTu correo es ${correo}`
+            alert(datosAlerta)
+            //document.getElementById("activar").innerText="Desactivado";
+            //document.getElementById("activar").innerHTML="Desactivado"
+
+        });
+        document.getElementById("activar").addEventListener("mouseenter",(event)=>{
+            document.getElementById("activar").style="background-color: green";
+
+        });
+        document.getElementById("activar").addEventListener("mouseleave",(event)=>{
+            document.getElementById("activar").style="background-color: red";
+
+        });
+        
+
+    </script>
+</body>
+</html>
