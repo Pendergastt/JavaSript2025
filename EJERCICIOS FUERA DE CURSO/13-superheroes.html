@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>superheroes</title>
+</head>
+<body>
+
+    CARGAR LOS DATOS DEL EQUIPO<input id="datosSuperheroes" type="file"><br>
+    <br>
+    <span><b>NOMBRE:</b></span><span id="nombre"></span><br>
+    <br>
+    <span><b>IDENTIDAD SECRETA:</b></span><span id="identidadSecreta"></span><br>
+    <br>
+    <span><b>EDAD:</b></span><span id="edad"></span><br>
+    <br>
+    <div id="superpoderes"><h3>SUPERPODERES</h3></div>
+        <ul id="listaPoderes">
+
+        </ul>
+    
+        <span><b>NOMBRE:</b></span><span id="nombre"></span><br>
+    <br>
+    <span><b>IDENTIDAD SECRETA:</b></span><span id="identidadSecreta"></span><br>
+    <br>
+    <span><b>EDAD:</b></span><span id="edad"></span><br>
+    <br>
+    <div id="superpoderes"><h3>SUPERPODERES</h3></div>
+        <ul id="listaPoderes">
+
+        </ul>
+
+
+
+    <script>
+        document.getElementById("listaPoderes").innerHTML= "<li>hola</li><li>que</li><li>tal</li>"
+        let datosSuperheroes=[];
+        document.getElementById("datosSuperheroes").addEventListener("change",(event)=>{
+            let fichero=event.target.files[0];
+            let lector=new FileReader();
+            
+                lector.onload=(x)=>{
+                    //datosSuperheroes=JSON.parse(fichero);
+                    datosSuperheroes=JSON.parse(x.target.result);
+
+                    reportarDatos()
+                };
+
+                lector.onerror=alert("fichero erroneo")
+
+                lector.readAsText(fichero);
+
+           
+        });
+
+        
+function reportarDatos(){
+console.log(datosSuperheroes);
+document.getElementsByTagName("span")[1].innerHTML+="esto sale en el nombre"
+
+
+
+};
+
+
+
+
+
+    </script>
+</body>
+</html>
