@@ -109,6 +109,8 @@
         //evento para cuando seleccionamos la región en el select
     document.getElementById("regiones").addEventListener("change",crearLista);
     document.getElementById("regiones").addEventListener("change",crearSubregion);
+    document.getElementById("subregion").addEventListener("change",crearSubLista);
+
 
         // Crea lista del select y la imprime
     function crearLista(){
@@ -124,13 +126,31 @@
             listadoRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`
             })
         };
-                
         document.getElementById("tablaPaises").innerHTML=cabecera+listadoRegion;
+
+    };
+                
+
+    function crearSubLista(){
+        let listadoSubRegion=""
+        let cabecera=`<tr><th>PAÍS</th><th>CAPITAL</th><th>POBLACION</th><th class="centrado">BANDERA</th></tr>`;
+        opcion=document.getElementById("subregion").value;
+
+        if(opcion=="Todos"){
+            informacionPaises.forEach((item)=>listadoRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`)
+        }   else{
+            informacionPaises.filter((item)=>item.subregion==opcion).forEach((item)=>{
+            listadoSubRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`
+            })
+        };
+        document.getElementById("tablaPaises").innerHTML=cabecera+listadoSubRegion;
+
+                
+    
 
     };
 
     function crearSubregion(){
-
         let selectSubRegiones="<option selected>Todas</option>"
             informacionPaises.forEach((a)=>{
                 if(opcion==a.region) listaSubRegiones.add(a.subregion);
@@ -139,6 +159,7 @@
                 selectSubRegiones+=`<option>${subregion}</option>`
             });
         document.getElementById("subregion").innerHTML=selectSubRegiones;
+        listaSubRegiones=new Set();
 
         //document.getElementById("tablaPaises").innerHTML=cabecera+listadoSubRegion;
 
