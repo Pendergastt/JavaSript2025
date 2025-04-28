@@ -99,7 +99,9 @@
             });
             document.getElementById("regiones").innerHTML=selectRegiones;
             document.getElementById("regiones").addEventListener("focus",crearLista);
-            document.getElementById("regiones").focus();
+            document.getElementById("regiones").addEventListener("DOMContentLoaded","focus");
+
+
 
 
 
@@ -136,8 +138,8 @@
         let cabecera=`<tr><th>PAÍS</th><th>CAPITAL</th><th>POBLACION</th><th class="centrado">BANDERA</th></tr>`;
         opcion=document.getElementById("subregion").value;
 
-        if(opcion=="Todos"){
-            informacionPaises.forEach((item)=>listadoRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`)
+        if(opcion=="Todas"){
+            informacionPaises.forEach((item)=>listadoSubRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`)
         }   else{
             informacionPaises.filter((item)=>item.subregion==opcion).forEach((item)=>{
             listadoSubRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`
