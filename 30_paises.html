@@ -28,13 +28,23 @@
     </style>
 </head>
 <body>
-    ELIGE UNA BASE DE DATOS <input type="file" id="baseDatosPaises" style="font-size: large;">
-    <br><br>
-    <h1>BASE DE DATOS DE PAISES</h1>
-    <h3>Elige una región</h3>
-    <select id="regiones" style="font-size: larger;">
-        
-    </select>
+    <div id="selects">
+        ELIGE UNA BASE DE DATOS <input type="file" id="baseDatosPaises" style="font-size: large;">
+        <br><br>
+            <h1>BASE DE DATOS DE PAISES</h1>
+        <div></div>
+            <h3>Elige una región</h3>
+            <select id="regiones" style="font-size: larger;">
+                
+            </select>
+        </div>
+        <div>
+            <h3>Elige una subregión</h3>
+            <select id="subregion" style="font-size: larger;">
+                
+            </select>
+        </div>
+    </div>
     <hr>
     <h3>PAISES DE LA REGIÓN</h3>
     <br>
@@ -47,6 +57,9 @@
 
         // Creamos un set de vacío donde introducir las opcions del select
         let listaRegiones=new Set();
+        let listaSubRegiones=new Set();
+        let opcion;
+
         
         // Registramos evento: Cuando el input de archivo cambie (es decir, elijamos archivo)
         // ocurre el "evento". 
@@ -88,17 +101,21 @@
             document.getElementById("regiones").addEventListener("focus",crearLista);
             document.getElementById("regiones").focus();
 
+
+
         };
 
 
         //evento para cuando seleccionamos la región en el select
     document.getElementById("regiones").addEventListener("change",crearLista);
-    
+    document.getElementById("regiones").addEventListener("change",crearSubregion);
+
         // Crea lista del select y la imprime
     function crearLista(){
         let listadoRegion="";
+        let listadoSubRegion=""
         let cabecera=`<tr><th>PAÍS</th><th>CAPITAL</th><th>POBLACION</th><th class="centrado">BANDERA</th></tr>`;
-        let opcion=document.getElementById("regiones").value;
+        opcion=document.getElementById("regiones").value;
 
         if(opcion=="Todos"){
             informacionPaises.forEach((item)=>listadoRegion+=`<tr><td>${item.name}</td><td>${item.capital}</td><td>${item.population}</td><td class="centrado"><img src=${item.flag} height=15px; ></td></tr>`)
@@ -109,6 +126,23 @@
         };
                 
         document.getElementById("tablaPaises").innerHTML=cabecera+listadoRegion;
+
+    };
+
+    function crearSubregion(){
+
+        let selectSubRegiones="<option selected>Todas</option>"
+            informacionPaises.forEach((a)=>{
+                if(opcion==a.region) listaSubRegiones.add(a.subregion);
+                });
+            listaSubRegiones.forEach((subregion)=>{
+                selectSubRegiones+=`<option>${subregion}</option>`
+            });
+        document.getElementById("subregion").innerHTML=selectSubRegiones;
+
+        //document.getElementById("tablaPaises").innerHTML=cabecera+listadoSubRegion;
+
+
     };
 
 
